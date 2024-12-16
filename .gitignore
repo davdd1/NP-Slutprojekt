@@ -1,0 +1,9 @@
+build/
+sdkconfig
+sdkconfig.old
+.vscode/
+.devcontainer/
+backup/
+
+.env
+*.bin
