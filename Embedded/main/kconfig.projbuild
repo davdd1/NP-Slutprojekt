@@ -1,0 +1,29 @@
+menu "MQTT"
+    config MQTT_BROKER_URI
+        string "MQTT Broker URI"
+        default "test.mosquitto.org"
+        help 
+            "MQTT Broker URI, mqtts:// is prefixed to the URI"
+endmenu
+
+menu "UART"
+    config UART_BAUD_RATE
+        int "UART Baud Rate"
+        default 115200
+        help 
+            "UART Baud Rate"
+endmenu
+
+menu "WiFi"
+    config WIFI_SSID
+        string "WiFi SSID"
+        default "MySSID"
+        help 
+            "WiFi SSID"
+
+    config WIFI_PASSWORD
+        string "WiFi Password"
+        default "MyPassword"
+        help 
+            "WiFi Password"
+endmenu
