@@ -4,6 +4,7 @@ sdkconfig.old
 .vscode/
 .devcontainer/
 backup/
+cert/*
 
 .env
 *.bin

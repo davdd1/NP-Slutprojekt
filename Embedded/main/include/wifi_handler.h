@@ -20,12 +20,12 @@ public:
     WiFiHandler();
     ~WiFiHandler();
     void init();
-    void connect();
     void disconnect();
     bool isConnected();
     void setSSID(char* ssid);
     void setPassword(char* password);
     void setEventGroup(EventGroupHandle_t eventGroup);
+    EventGroupHandle_t getEventGroup();
 private:
     wifi_init_params_t* params;
 };

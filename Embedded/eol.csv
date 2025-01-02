@@ -1,0 +1,4 @@
+key,type,encoding,value
+certs,namespace,,
+esp_cert,file,string,./cert/esp_cert.crt
+esp_key,file,string,./cert/esp_key.key

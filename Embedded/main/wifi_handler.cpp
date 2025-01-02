@@ -16,8 +16,6 @@ WiFiHandler::WiFiHandler() {
     setEventGroup(wifiEventGroup);
     setSSID(CONFIG_WIFI_SSID);
     setPassword(CONFIG_WIFI_PASSWORD);
-    this->init();
-    this->connect();
 }
 
 WiFiHandler::~WiFiHandler() {
@@ -29,6 +27,8 @@ static void wifi_event_handler(void* arg, esp_event_base_t event_base, int32_t e
     wifi_init_params_t* params = (wifi_init_params_t*)arg;
     switch (event_id) {
         case WIFI_EVENT_STA_START:
+            PRINTF_WIFI("Connect to WiFi");
+            reconnectCounter = 0;
             esp_wifi_connect();
             break;
         case WIFI_EVENT_STA_CONNECTED:
@@ -98,17 +98,6 @@ void WiFiHandler::init() {
     ESP_ERROR_CHECK(esp_wifi_start());
 }
 
-void WiFiHandler::connect() {
-    PRINTF_WIFI("Connect to WiFi");
-    PRINTF_WIFI("SSID: %s", this->params->ssid);
-    PRINTF_WIFI("Password: %s", this->params->password);
-    PRINTF_WIFI("Event group: %p", this->params->wifiEventGroup);
-    PRINTF_WIFI("Event group bits: %ld", xEventGroupGetBits(this->params->wifiEventGroup));
-    PRINTF_WIFI("CONFIG_WIFI_SSID: %s", CONFIG_WIFI_SSID);
-    PRINTF_WIFI("CONFIG_WIFI_PASSWORD: %s", CONFIG_WIFI_PASSWORD);
-    esp_wifi_connect();
-}
-
 void WiFiHandler::disconnect() {
     PRINTF_WIFI("Disconnect from WiFi");
     esp_wifi_disconnect();
@@ -134,4 +123,9 @@ void WiFiHandler::setPassword(char* password) {
 void WiFiHandler::setEventGroup(EventGroupHandle_t eventGroup) {
     PRINTF_WIFI("Set WiFi event group");
     this->params->wifiEventGroup = eventGroup;
+}
+
+EventGroupHandle_t WiFiHandler::getEventGroup()
+{
+    return this->params->wifiEventGroup;
 }
