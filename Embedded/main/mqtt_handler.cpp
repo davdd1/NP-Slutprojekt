@@ -50,6 +50,7 @@ static void mqtt_event_handler(void* arg, esp_event_base_t event_base, int32_t e
             PRINTF_MQTT("MQTT disconnected");
             xEventGroupClearBits(params->mqttEventGroup, MQTT_CONNECTED_BIT);
             if (reconnectCounter < MQTT_RECONNECT_MAX_ATTEMPT) {
+                vTaskDelay(pdMS_TO_TICKS(2000));
                 reconnectCounter++;
                 esp_mqtt_client_reconnect(params->mqttClient);
             }
@@ -70,6 +71,10 @@ void MQTTHandler::init()
     snprintf(fullURI, sizeof(fullURI), "mqtts://%s", this->params->brokerURI);
     mqttConfig.broker.address.uri = fullURI;
   
+    // Test without verification
+    mqttConfig.broker.verification.skip_cert_common_name_check = true;
+    mqttConfig.broker.address.port = CONFIG_MQTT_BROKER_PORT;
+
     this->params->mqttClient = esp_mqtt_client_init(&mqttConfig);
     if (this->params->mqttClient == NULL) {
         PRINTF_MQTT("Failed to initialize MQTT client");

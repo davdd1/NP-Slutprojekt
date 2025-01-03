@@ -1,0 +1,6 @@
+user localhost
+topic readwrite /torget
+topic readwrite /spelare/+/uplink
+topic write /spelare/+/downlink
+topic write /myndigheten
+

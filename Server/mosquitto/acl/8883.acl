@@ -1,0 +1,17 @@
+user admin
+topic readwrite #
+
+user player1
+topic write /spelare/1/uplink
+topic read /spelare/1/downlink
+topic read /myndigheten
+topic write /torget
+
+user player2
+topic write /spelare/2/uplink
+topic read /spelare/2/downlink
+topic read /myndigheten
+topic write /torget
+
+pattern write /spelare/%u/uplink
+pattern read /spelare/%u/downlink

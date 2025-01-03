@@ -27,7 +27,7 @@ extern "C" void app_main(void) {
 
     xEventGroupWaitBits(mqttHandler.getEventGroup(), MQTT_CONNECTED_BIT, pdFALSE, pdTRUE, portMAX_DELAY);
 
-    mqttHandler.subscribe("test");
+    mqttHandler.subscribe("/torget");
     uartHandler.send("Hello from ESP32!\n");
 
     PRINTF_MAIN("Main finished.");

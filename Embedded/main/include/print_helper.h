@@ -29,5 +29,8 @@
     PRINTF_COLOR(MAGENTA, "WiFi: "); \
     printf(format, ##__VA_ARGS__); \
     printf("\n")
-
+#define PRINTF_NVS(format, ...) \
+    PRINTF_COLOR(YELLOW, "NVS: "); \
+    printf(format, ##__VA_ARGS__); \
+    printf("\n")
 

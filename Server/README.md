@@ -1,0 +1,1 @@
+## BUILD AND RUN ´´´docker compose down; docker build --tag server .; docker compose up -d;´´´

@@ -4,6 +4,12 @@ menu "MQTT"
         default "test.mosquitto.org"
         help 
             "MQTT Broker URI, mqtts:// is prefixed to the URI"
+
+    config MQTT_BROKER_PORT
+        int "MQTT Broker Port"
+        default 8884
+        help 
+            "MQTT Broker Port"
 endmenu
 
 menu "UART"
