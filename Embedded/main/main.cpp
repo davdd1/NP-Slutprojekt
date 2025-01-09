@@ -6,34 +6,39 @@
 #include "freertos/event_groups.h"
 #include "print_helper.h"
 #include "esp_heap_caps.h"
+#include "nvs_flash.h"
+#include "https_handler.h"
 
-WiFiHandler wifiHandler;
-MQTTHandler mqttHandler;
-UARTHandler uartHandler;
+WiFiHandler wifi;
+MQTTHandler mqtt;
+UARTHandler uart;
+EventGroupHandle_t eventGroup;
 
-extern "C" void app_main(void) {
+extern "C" void app_main(void)
+{
 
+    wifi.init();
+    uart.init();
 
-    wifiHandler.init();
-    uartHandler.init();
+    xEventGroupWaitBits(wifi.getEventGroup(), WIFI_CONNECTED_BIT, pdFALSE, pdTRUE, portMAX_DELAY);
+    vTaskDelay(pdMS_TO_TICKS(2000));
 
-    //Check heap
-    PRINTF_MAIN("Free heap: %lud", esp_get_free_heap_size());
-    heap_caps_print_heap_info(MALLOC_CAP_8BIT);
+    eventGroup = xEventGroupCreate();
+    xTaskCreate(httpsTask, "HTTPS Task", HTTPS_TASK_STACK_SIZE, (void*)eventGroup, 5, NULL);
 
-    xEventGroupWaitBits(wifiHandler.getEventGroup(), WIFI_CONNECTED_BIT, pdFALSE, pdTRUE, portMAX_DELAY);
+    xEventGroupWaitBits(eventGroup, HTTPS_READY_BIT, pdFALSE, pdTRUE, portMAX_DELAY);
 
-    mqttHandler.init();
+    PRINTF_MAIN("Starting MQTT");
 
-    xEventGroupWaitBits(mqttHandler.getEventGroup(), MQTT_CONNECTED_BIT, pdFALSE, pdTRUE, portMAX_DELAY);
+    mqtt.init();
 
-    mqttHandler.subscribe("/torget");
-    uartHandler.send("Hello from ESP32!\n");
+    xEventGroupWaitBits(mqtt.getEventGroup(), MQTT_CONNECTED_BIT, pdFALSE, pdTRUE, portMAX_DELAY);
 
     PRINTF_MAIN("Main finished.");
 
-    while (true) {
-        uartHandler.receive();
+    while (true)
+    {
+        uart.receive();
         vTaskDelay(pdMS_TO_TICKS(1000));
     }
 }

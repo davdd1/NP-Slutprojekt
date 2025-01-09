@@ -39,7 +39,8 @@ bool nvsHandler::openHandle()
     {
         return true;
     }
-    esp_err_t nvsResult = nvs_open_from_partition(partitionName, namespaceName, NVS_READWRITE, &handle);
+    esp_err_t nvsResult = nvs_flash_init_partition(partitionName);
+    nvsResult = nvs_open_from_partition(partitionName, namespaceName, NVS_READWRITE, &handle);
     if (nvsResult != ESP_OK)
     {
         PRINTF_NVS("nvs_open_from_partition failed for namespace %s: %s", namespaceName, esp_err_to_name(nvsResult));
@@ -48,17 +49,17 @@ bool nvsHandler::openHandle()
     return true;
 }
 
-bool nvsHandler::saveCertificate(const char* certData)
+bool nvsHandler::saveCertificate(const char *certData)
 {
     return saveToNVS(CERT_CERTIFICATE, certData, strlen(certData));
 }
 
-bool nvsHandler::savePrivateKey(const char* keyData)
+bool nvsHandler::savePrivateKey(const char *keyData)
 {
     return saveToNVS(CERT_PRIVATE_KEY, keyData, strlen(keyData));
 }
 
-bool nvsHandler::saveToNVS(const char* key, const char* data, size_t dataSize)
+bool nvsHandler::saveToNVS(const char *key, const char *data, size_t dataSize)
 {
     if (!openHandle())
     {
@@ -66,7 +67,7 @@ bool nvsHandler::saveToNVS(const char* key, const char* data, size_t dataSize)
         return false;
     }
 
-    esp_err_t nvsResult = nvs_set_blob(handle, key, data, dataSize);
+    esp_err_t nvsResult = nvs_set_str(handle, key, data);
     if (nvsResult != ESP_OK)
     {
         PRINTF_NVS("Error writing data to NVS with key '%s': %s", key, esp_err_to_name(nvsResult));
@@ -82,17 +83,17 @@ bool nvsHandler::saveToNVS(const char* key, const char* data, size_t dataSize)
     return true;
 }
 
-bool nvsHandler::loadCertificate(char** certData, size_t* certSize)
+bool nvsHandler::loadCertificate(char **certData, size_t *certSize)
 {
     return loadFromNVS(CERT_CERTIFICATE, certData, certSize);
 }
 
-bool nvsHandler::loadPrivateKey(char** keyData, size_t* keySize)
+bool nvsHandler::loadPrivateKey(char **keyData, size_t *keySize)
 {
     return loadFromNVS(CERT_PRIVATE_KEY, keyData, keySize);
 }
 
-bool nvsHandler::loadFromNVS(const char* key, char** data, size_t* dataSize)
+bool nvsHandler::loadFromNVS(const char *key, char **data, size_t *dataSize)
 {
     if (!openHandle())
     {
@@ -100,7 +101,24 @@ bool nvsHandler::loadFromNVS(const char* key, char** data, size_t* dataSize)
         return false;
     }
 
-    esp_err_t nvsResult = nvs_get_blob(handle, key, NULL, dataSize);
+    // Check the size of the data in NVS with the correct key
+    size_t required_size;
+    esp_err_t err = nvs_get_str(handle, key, nullptr, &required_size);
+    if (err == ESP_ERR_NVS_NOT_FOUND)
+    {
+        PRINTF_HTTPS("Key '%s' not found in NVS", key);
+    }
+    else if (err == ESP_OK)
+    {
+        PRINTF_HTTPS("Key '%s' found in NVS, size: %d", key, required_size);
+    }
+    else
+    {
+        PRINTF_HTTPS("Error checking NVS key '%s': %s", key, esp_err_to_name(err));
+    }
+
+    // Get the actual data size and allocate memory
+    esp_err_t nvsResult = nvs_get_str(handle, key, NULL, dataSize);
     if (nvsResult != ESP_OK)
     {
         PRINTF_NVS("Error getting data size from NVS with key '%s': %s", key, esp_err_to_name(nvsResult));
@@ -114,7 +132,8 @@ bool nvsHandler::loadFromNVS(const char* key, char** data, size_t* dataSize)
         return false;
     }
 
-    nvsResult = nvs_get_blob(handle, key, *data, dataSize);
+    // Read the data from NVS
+    nvsResult = nvs_get_str(handle, key, *data, dataSize);
     if (nvsResult != ESP_OK)
     {
         PRINTF_NVS("Error reading data from NVS with key '%s': %s", key, esp_err_to_name(nvsResult));
@@ -123,6 +142,7 @@ bool nvsHandler::loadFromNVS(const char* key, char** data, size_t* dataSize)
     }
     return true;
 }
+
 
 bool nvsHandler::eraseCertificate()
 {
@@ -134,7 +154,7 @@ bool nvsHandler::erasePrivateKey()
     return eraseFromNVS(CERT_PRIVATE_KEY);
 }
 
-bool nvsHandler::eraseFromNVS(const char* key)
+bool nvsHandler::eraseFromNVS(const char *key)
 {
     if (!openHandle())
     {

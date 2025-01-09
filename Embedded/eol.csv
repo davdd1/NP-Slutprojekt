@@ -1,5 +1,4 @@
 key,type,encoding,value
 certs,namespace,,
 ca_cert,file,string,./cert/rootCA.crt
-client_cert,file,string,./cert/client.crt
-client_key,file,string,./cert/client.key
+ca_pem,file,string,./cert/rootCA.pem

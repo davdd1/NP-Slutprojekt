@@ -33,4 +33,8 @@
     PRINTF_COLOR(YELLOW, "NVS: "); \
     printf(format, ##__VA_ARGS__); \
     printf("\n")
+#define PRINTF_HTTPS(format, ...) \
+    PRINTF_COLOR(CYAN, "HTTPS: "); \
+    printf(format, ##__VA_ARGS__); \
+    printf("\n")
 

@@ -8,7 +8,7 @@
 
 typedef struct {
     char brokerURI[64];
-    char clientID[32];
+    //char clientID[32];
     EventGroupHandle_t mqttEventGroup;
     esp_mqtt_client_handle_t mqttClient;
 } mqtt_init_params_t;
@@ -19,18 +19,26 @@ public:
     MQTTHandler();
     ~MQTTHandler();
     
-
     void init();
+    void publishMessage(const std::string &topic, const std::string &message);
+    void subscribeTopics();
     void connect();
     void disconnect();
-    void publish(const std::string& topic, const std::string& message);
-    void subscribe(const std::string& topic);
     void setClientID(const std::string &clientID);
     void setEventGroup(EventGroupHandle_t* eventGroup);
     void setBrokerURI();
     void handleMessage(esp_mqtt_event_t event);
     EventGroupHandle_t getEventGroup();
 
+    void onPlayerMessage(const char* topic, const char* message);
+    void onAuthorityMessage(const char* message);
+    void onLeaderElection(const char* message);
+    void onMissionResult(const char* message);
+
+    void publish(const std::string& topic, const std::string& message);
+    void subscribe(const std::string& topic);
+
 private:
     mqtt_init_params_t* params;
+    char* playerID;
 };

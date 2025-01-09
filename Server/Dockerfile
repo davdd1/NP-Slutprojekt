@@ -19,6 +19,6 @@ COPY cert /cert
 COPY mosquitto /mosquitto
 COPY --from=build-stage /server /server
 
-EXPOSE 8081
+EXPOSE 9191
 
 ENTRYPOINT [ "/server" ]

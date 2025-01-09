@@ -1,12 +1,9 @@
 package main
 
 import (
-	"bytes"
 	"crypto/rand"
-	"crypto/rsa"
 	"crypto/tls"
 	"crypto/x509"
-	"encoding/json"
 	"encoding/pem"
 	"io"
 	"log"
@@ -14,194 +11,258 @@ import (
 	"net/http"
 	"os"
 	"time"
-    "github.com/eclipse/paho.mqtt.golang"
+
+	"github.com/gin-gonic/gin"
 )
+
 
 const (
-	caCertFile = "cert/rootCA.crt"
-	caKeyFile  = "cert/rootCA.key"
+	caCertFile     = "cert/rootCA.crt" // Path to CA cert
+	caKeyFile      = "cert/rootCA.key" // Path to CA key (if needed, though usually just CA cert is needed)
+	serverCertFile = "cert/server.crt" // Path to server cert
+	serverKeyFile  = "cert/server.key" // Path to server key
 )
 
-// Paths till serverns cert, för HTTPS:
-const (
-	serverCertFile = "cert/server.crt"
-	serverKeyFile  = "cert/server.key"
-)
-
-// Globala variabler för CA i minnet
-var (
-	caCert *x509.Certificate
-	caKey  *rsa.PrivateKey
-)
-
-// init() körs innan main(), laddar CA från fil
+// init() will be called before main() to initialize server and certificates
 func init() {
-	// 1) Läs CA-cert
-	caCertPEM, err := os.ReadFile(caCertFile)
+
+	log.Println("Initializing Go server...")
+
+	// Load server certificate and key
+	serverCert, err := tls.LoadX509KeyPair(serverCertFile, serverKeyFile)
+	if err != nil {
+		log.Fatalf("Failed to load server cert/key: %v", err)
+	}
+
+	certPool := x509.NewCertPool()
+	// Read the CA certificate
+	caCert, err := os.ReadFile(caCertFile)
 	if err != nil {
 		log.Fatalf("Failed to read CA cert file: %v", err)
 	}
-	block, _ := pem.Decode(caCertPEM)
+
+	// Create a cert pool and append the CA cert for client verification
+	certPool.AppendCertsFromPEM(caCert)
+
+	// Create TLS config with CA for client certificate verification
+	tlsConfig := &tls.Config{
+		ClientCAs:          certPool,                      // The CA cert pool to verify the client certificates
+		ClientAuth:         tls.VerifyClientCertIfGiven,   // Require client certificates and verify them
+		Certificates:       []tls.Certificate{serverCert}, // Server certificate for the server side of the TLS connection
+		InsecureSkipVerify: true,                          // Set to false to ensure strict validation (turn to true for a more lenient check)
+	}
+
+	router := gin.Default()
+	// Enable logger middleware
+	router.Use(gin.Logger())
+	router.POST("/spelare/csr", HandleSignCSR)
+	router.POST("/spelare", playerIDHandler)
+
+	// Create the HTTP server with the configured TLS settings
+	server := &http.Server{
+		Addr:      ":9191",   // Define server listening port
+		TLSConfig: tlsConfig, // Use the TLS config
+		Handler:   router,    // Use the router as the handler
+	}
+
+		// Start the HTTPS server
+		log.Println("Starting Go server on https://localhost:9191")
+		if err := server.ListenAndServeTLS("", ""); err != nil {
+			log.Fatalf("Failed to start HTTPS server: %v", err)
+		}
+}
+
+// Handler for creating CSR and returning the signed certificate
+// TODO: Make sure only one cert per player ID
+func HandleSignCSR(c *gin.Context) {
+	// IMPORTANT: Common name is the player ID, only one cert per player ID
+
+	// Expect the client to send CSR data in the request body
+	log.Printf("Received Content-Type: %s", c.Request.Header.Get("Content-Type"))
+
+	csrData, err := io.ReadAll(c.Request.Body)
+	if err != nil {
+		log.Printf("Error reading CSR data: %v", err)
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Failed to read CSR"})
+		return
+	}
+
+	if len(csrData) == 0 {
+		log.Println("Empty CSR data")
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Empty CSR data"})
+		return
+	}
+
+	// Decode the CSR
+	block, _ := pem.Decode(csrData)
 	if block == nil {
-		log.Fatal("Failed to parse CA cert PEM")
-	}
-	c, err := x509.ParseCertificate(block.Bytes)
-	if err != nil {
-		log.Fatalf("Failed to parse CA cert: %v", err)
-	}
-	caCert = c
-
-	// 2) Läs CA-nyckel
-	caKeyPEM, err := os.ReadFile(caKeyFile)
-	if err != nil {
-		log.Fatalf("Failed to read CA key file: %v", err)
-	}
-	blockKey, _ := pem.Decode(caKeyPEM)
-	if blockKey == nil {
-		log.Fatal("Failed to parse CA key PEM")
-	}
-	k, err := x509.ParsePKCS8PrivateKey(blockKey.Bytes)
-	if err != nil {
-		log.Fatalf("Failed to parse CA key: %v", err)
-	}
-	caKey = k.(*rsa.PrivateKey)
-}
-
-// createPlayerHandler - exempel på endpoint som skapar ny "spelare"
-func createPlayerHandler(w http.ResponseWriter, r *http.Request) {
-	// I en riktig lösning kanske du genererar en ny ID från en databas eller räknare.
-	// Här hårdkodar vi "id: 5" som demo.
-	resp := map[string]any{"id": 5}
-	w.Header().Set("Content-Type", "application/json")
-	json.NewEncoder(w).Encode(resp)
-}
-
-// signCertHandler - tar emot en CSR, signerar den med Root CA
-func signCertHandler(w http.ResponseWriter, r *http.Request) {
-	if r.Method != http.MethodPost {
-		http.Error(w, "Only POST allowed", http.StatusMethodNotAllowed)
+		log.Println("Failed to decode CSR PEM")
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid CSR format"})
 		return
 	}
 
-	// Läs hela body
-	csrPEM, err := io.ReadAll(r.Body)
-	if err != nil {
-		http.Error(w, "cannot read body", http.StatusBadRequest)
-		return
-	}
-
-	// PEM-dekoda CSR
-	block, _ := pem.Decode(csrPEM)
-	if block == nil || block.Type != "CERTIFICATE REQUEST" {
-		http.Error(w, "not a valid CSR PEM", http.StatusBadRequest)
-		return
-	}
+	// Parse the CSR
 	csr, err := x509.ParseCertificateRequest(block.Bytes)
 	if err != nil {
-		http.Error(w, "invalid CSR", http.StatusBadRequest)
+		log.Printf("Failed to parse CSR: %v", err)
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Failed to parse CSR"})
 		return
 	}
 
-	// Verifiera CSR-signatur
+	// Ensure CSR is signed by the client
 	if err := csr.CheckSignature(); err != nil {
-		http.Error(w, "CSR signature invalid", http.StatusBadRequest)
+		log.Printf("CSR signature check failed: %v", err)
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid CSR signature"})
 		return
 	}
 
-	// Skapa "template" för det nya certet
-	serialNumber := big.NewInt(time.Now().UnixNano())
-	template := x509.Certificate{
-		SerialNumber: serialNumber,
-		Subject:      csr.Subject, // Tar Subjekt (CN, O, m.m.) från CSR
-		NotBefore:    time.Now(),
-		NotAfter:     time.Now().Add(365 * 24 * time.Hour), // 1 år
+	// DEBUG
+	log.Printf("CSR Subject: %v", csr.Subject.String())
+	log.Printf("CSR DNS Names: %v", csr.DNSNames)
+	log.Printf("CSR IP Addresses: %v", csr.IPAddresses)
+	log.Printf("CSR Common Name: %v", csr.Subject.CommonName)
 
-		KeyUsage:              x509.KeyUsageDigitalSignature | x509.KeyUsageKeyEncipherment,
-		ExtKeyUsage:           []x509.ExtKeyUsage{x509.ExtKeyUsageClientAuth}, // klientcert
+	// Load the CA certificate and key
+	caCertPEM, err := os.ReadFile(caCertFile)
+	if err != nil {
+		log.Printf("Failed to read CA cert file: %v", err)
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to read CA cert"})
+		return
+	}
+	caCertBlock, _ := pem.Decode(caCertPEM)
+	if caCertBlock == nil {
+		log.Println("Failed to decode CA cert PEM")
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to decode CA cert"})
+		return
+	}
+	caCert, err := x509.ParseCertificate(caCertBlock.Bytes)
+	if err != nil {
+		log.Printf("Failed to parse CA cert: %v", err)
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to parse CA cert"})
+		return
+	}
+	caKeyPEM, err := os.ReadFile(caKeyFile)
+	if err != nil {
+		log.Printf("Failed to read CA key file: %v", err)
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to read CA key"})
+		return
+	}
+	caKeyBlock, _ := pem.Decode(caKeyPEM)
+	if caKeyBlock == nil {
+		log.Println("Failed to decode CA key PEM")
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to decode CA key"})
+		return
+	}
+	var caKey interface{}
+	switch caKeyBlock.Type {
+	case "RSA PRIVATE KEY":
+		caKey, err = x509.ParsePKCS1PrivateKey(caKeyBlock.Bytes)
+		if err != nil {
+			log.Printf("Failed to parse RSA private key: %v", err)
+			c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to parse RSA private key"})
+			return
+		}
+	case "EC PRIVATE KEY":
+		caKey, err = x509.ParseECPrivateKey(caKeyBlock.Bytes)
+		if err != nil {
+			log.Printf("Failed to parse EC private key: %v", err)
+			c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to parse EC private key"})
+			return
+		}
+	case "PRIVATE KEY":
+		caKey, err = x509.ParsePKCS8PrivateKey(caKeyBlock.Bytes)
+		if err != nil {
+			log.Printf("Failed to parse PKCS8 private key: %v", err)
+			c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to parse PKCS8 private key"})
+			return
+		}
+	default:
+		log.Printf("Unknown private key type: %v", caKeyBlock.Type)
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Unknown private key type"})
+		return
+	}
+
+	serialNumberLimit := new(big.Int).Lsh(big.NewInt(1), 128)
+	serialNumber, err := rand.Int(rand.Reader, serialNumberLimit)
+	if err != nil {
+		log.Printf("Failed to generate serial number: %v", err)
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to generate serial number"})
+		return
+	}
+
+	// Create the signed client certificate based on the CSR
+	certTemplate := &x509.Certificate{
+		SerialNumber:          serialNumber,
+		Subject:               csr.Subject,
+		NotBefore:             time.Now(),
+		NotAfter:              time.Now().Add(365 * 24 * time.Hour), // Valid for 1 year
+		KeyUsage:              x509.KeyUsageKeyEncipherment | x509.KeyUsageDigitalSignature,
+		ExtKeyUsage:           []x509.ExtKeyUsage{x509.ExtKeyUsageClientAuth},
 		BasicConstraintsValid: true,
 	}
 
-	// Signera certet med vår root CA
-	signedCertBytes, err := x509.CreateCertificate(rand.Reader, &template, caCert, csr.PublicKey, caKey)
+	// Sign the certificate with the CA private key
+	derBytes, err := x509.CreateCertificate(
+		rand.Reader,
+		certTemplate,
+		caCert,
+		csr.PublicKey,
+		caKey,
+	)
 	if err != nil {
-		http.Error(w, "failed to create cert", http.StatusInternalServerError)
+		log.Printf("Failed to create certificate: %v", err)
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to sign certificate"})
 		return
 	}
 
-	// PEM-encoda det nya certet
-	var certPem bytes.Buffer
-	pem.Encode(&certPem, &pem.Block{Type: "CERTIFICATE", Bytes: signedCertBytes})
+	certPEM := pem.EncodeToMemory(&pem.Block{Type: "CERTIFICATE", Bytes: derBytes})
+	if certPEM == nil {
+		log.Println("Failed to encode certificate to PEM")
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to encode certificate"})
+		return
+	}
 
-	// Skriv tillbaka PEM i svaret
-	w.Header().Set("Content-Type", "application/x-pem-file")
-	w.Write(certPem.Bytes())
+	parsedCert, err := x509.ParseCertificate(derBytes)
+	if err != nil {
+		log.Printf("Failed to parse signed certificate: %v", err)
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to parse signed certificate"})
+		return
+	}
+	log.Printf("Signed certificate subject: %s\n", parsedCert.Subject.String())
+	log.Printf("Signed certificate common name: %s\n", parsedCert.Subject.CommonName)
+
+	log.Printf("Certificate signed successfully\n")
+	c.Data(http.StatusOK, "application/x-pem-file", certPEM)
 }
 
+// Give a player ID to a new player, same id for same player
+func givePlayerID() string {
+	// temp
+	// TODO: Implement a way to give a player ID
+	// RAndom number as a string with rand function
+	// For now just return a random number
+	// return strconv.Itoa(rand.Intn(1000))
+	return "321"
 
-func testMQTTConnection() {
-	// 1) Ladda root CA för att verifiera Mosquitto-serverns cert
-	caCertData, err := os.ReadFile("cert/rootCA.crt")
-	if err != nil {
-		log.Fatalf("Error reading rootCA: %v", err)
-	}
-	caPool := x509.NewCertPool()
-	if !caPool.AppendCertsFromPEM(caCertData) {
-		log.Fatal("Failed to append CA cert")
-	}
-	
-	// 2) Skapa en tls.Config med vår CA-pool
-	tlsConfig := &tls.Config{
-		RootCAs: caPool,
-		// Om Mosquitto inte kräver klientcert, räcker detta.
-		// Om du kör mutual TLS kan du lägga in client cert här.
-		InsecureSkipVerify: true, // annars måste servern heta samma CN som i certet
-	}
-	
-	// 3) Bygg MQTT ClientOptions
-	opts := mqtt.NewClientOptions()
-	// Byt ut "mqtts://Jesper:8883" om Mosquitto-cert har CN=Jesper + hosts-filen
-	// Annars "mqtts://localhost:8883" om du genererat CN=localhost.
-	opts.AddBroker("mqtts://localhost:8884")
-	opts.SetClientID("GoClient")
-	opts.SetTLSConfig(tlsConfig) // här sätter vi vår Root CA
-	
-	// 4) Skapa MQTT-client och anslut
-	client := mqtt.NewClient(opts)
-	token := client.Connect()
-	token.Wait()
-	if token.Error() != nil {
-		log.Fatalf("MQTT connect error: %v", token.Error())
-	}
-	log.Println("MQTT connected OK")
-	
-	// 5) Publicera en test-sträng
-	pubToken := client.Publish("test", 0, false, "Hello from Go!")
-	pubToken.Wait()
-	if pubToken.Error() != nil {
-		log.Printf("publish error: %v", pubToken.Error())
-		} else {
-			log.Println("published OK to topic 'test'")
-		}
-		
-		// 6) Stäng anslutning
-		client.Disconnect(250)
-	}
-	
-	func main() {
-		// Registrera handlers
-		http.HandleFunc("/spelare", createPlayerHandler)
-		http.HandleFunc("/spelare/csr", signCertHandler)
-	
-		// Skapa en TLS-server
-		srv := &http.Server{
-			Addr: ":8884", // t.ex. port 9191
-			// Standard Handler = DefaultServeMux (som vi registrerat endpoints på)
-		}
-	
-		// Testa MQTT-anslutning
-		//testMQTTConnection()
-	
-		log.Println("Starting Go server on https://localhost:8884")
-		// Starta HTTPS. server.crt/server.key ska vara signerat av rootCA eller en intermediate CA
-		log.Fatal(srv.ListenAndServeTLS(serverCertFile, serverKeyFile))
-	}
+}
+
+// Handler for creating a new player ID, need to remember this ID for the player, cant gen
+func playerIDHandler(c *gin.Context) {
+	playerID := givePlayerID()
+
+	// Prepare the response
+	response := gin.H{"id": playerID}
+
+	// Log the response
+	log.Printf("Response sent: %v", response)
+
+	c.Header("Content-Type", "application/json; charset=utf-8")
+
+	// Send the response
+	c.JSON(http.StatusOK, response)
+}
+
+func main() {
+	log.Println("Starting Go server...")
+
+}
