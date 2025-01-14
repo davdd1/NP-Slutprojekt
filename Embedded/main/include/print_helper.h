@@ -13,28 +13,27 @@
 
 #define PRINTF_COLOR(color, format, ...) printf("%s" format "%s", color, ##__VA_ARGS__, RESET)
 
-#define PRINTF_MAIN(format, ...) \
-    PRINTF_COLOR(RED, "Main: "); \
+#define PRINTF_MAIN(format, ...)   \
+    PRINTF_COLOR(RED, "Main: ");   \
     printf(format, ##__VA_ARGS__); \
     printf("\n")
-#define PRINTF_MQTT(format, ...) \
-    PRINTF_COLOR(BLUE, "MQTT: "); \
+#define PRINTF_MQTT(format, ...)   \
+    PRINTF_COLOR(BLUE, "MQTT: ");  \
     printf(format, ##__VA_ARGS__); \
     printf("\n")
-#define PRINTF_UART(format, ...) \
+#define PRINTF_UART(format, ...)   \
     PRINTF_COLOR(GREEN, "UART: "); \
     printf(format, ##__VA_ARGS__); \
     printf("\n")
-#define PRINTF_WIFI(format, ...) \
+#define PRINTF_WIFI(format, ...)     \
     PRINTF_COLOR(MAGENTA, "WiFi: "); \
-    printf(format, ##__VA_ARGS__); \
+    printf(format, ##__VA_ARGS__);   \
     printf("\n")
-#define PRINTF_NVS(format, ...) \
+#define PRINTF_NVS(format, ...)    \
     PRINTF_COLOR(YELLOW, "NVS: "); \
     printf(format, ##__VA_ARGS__); \
     printf("\n")
-#define PRINTF_HTTPS(format, ...) \
+#define PRINTF_HTTPS(format, ...)  \
     PRINTF_COLOR(CYAN, "HTTPS: "); \
     printf(format, ##__VA_ARGS__); \
     printf("\n")
-

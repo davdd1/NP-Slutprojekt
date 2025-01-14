@@ -8,24 +8,26 @@
 #define WIFI_HAS_IP_BIT BIT1
 #define WIFI_RECONNECT_MAX_ATTEMPT 50
 
-typedef struct {
+typedef struct
+{
     char ssid[32];
     char password[32];
     EventGroupHandle_t wifiEventGroup;
 } wifi_init_params_t;
 
-class WiFiHandler {
+class WiFiHandler
+{
 public:
-
     WiFiHandler();
     ~WiFiHandler();
     void init();
     void disconnect();
     bool isConnected();
-    void setSSID(char* ssid);
-    void setPassword(char* password);
+    void setSSID(char *ssid);
+    void setPassword(char *password);
     void setEventGroup(EventGroupHandle_t eventGroup);
     EventGroupHandle_t getEventGroup();
+
 private:
-    wifi_init_params_t* params;
+    wifi_init_params_t *params;
 };

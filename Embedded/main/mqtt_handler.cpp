@@ -2,12 +2,20 @@
 #include "mqtt_client.h"
 #include "print_helper.h"
 #include "nvs_handler.h"
-#include <iostream>
 #include <string>
+#include "mqtt_client.h"
+#include "mbedtls/entropy.h"
+#include "mbedtls/ctr_drbg.h"
+#include "mbedtls/oid.h"
+#include "mbedtls/error.h"
+#include "mbedtls/pk.h"
+#include "mbedtls/pem.h"
+#include "mbedtls/x509_csr.h"
+#include "mbedtls/x509.h"
+#include "mbedtls/entropy.h"
+#include "mbedtls/x509_crt.h"
 
 static int reconnectCounter = 0;
-
-constexpr char *BROKER_COMMON_NAME = "mosquitto";
 
 MQTTHandler::MQTTHandler()
 {
@@ -15,7 +23,6 @@ MQTTHandler::MQTTHandler()
     this->params = new mqtt_init_params_t();
     EventGroupHandle_t mqttEventGroup = xEventGroupCreate();
     setEventGroup(&mqttEventGroup);
-    // setClientID();
 }
 
 MQTTHandler::~MQTTHandler()
@@ -26,7 +33,8 @@ static void mqtt_event_handler(void *arg, esp_event_base_t event_base, int32_t e
 {
     PRINTF_MQTT("MQTT event handler called");
 
-    // Check if arg is valid before dereferencing
+    esp_mqtt_event_handle_t *event = (esp_mqtt_event_handle_t *)event_data;
+
     if (arg == NULL)
     {
         PRINTF_MQTT("Error: mqtt_event_handler called with null arg");
@@ -43,8 +51,7 @@ static void mqtt_event_handler(void *arg, esp_event_base_t event_base, int32_t e
     {
     case MQTT_EVENT_CONNECTED:
         PRINTF_MQTT("Connected to MQTT broker");
-        PRINTF_MQTT("Broker: mqtts://%s", params->brokerURI);
-        // PRINTF_MQTT("Client ID: %s", params->clientID);
+        PRINTF_MQTT("Broker: mqtts://%s:%s", CONFIG_MQTT_BROKER_URI, CONFIG_MQTT_BROKER_PORT);
         xEventGroupSetBits(params->mqttEventGroup, MQTT_CONNECTED_BIT);
         break;
     case MQTT_EVENT_DISCONNECTED:
@@ -60,15 +67,18 @@ static void mqtt_event_handler(void *arg, esp_event_base_t event_base, int32_t e
     case MQTT_EVENT_SUBSCRIBED:
         PRINTF_MQTT("MQTT subscribe");
         break;
-    default:
+    case MQTT_EVENT_DATA:
+        PRINTF_MQTT("MQTT data");
+        MQTTHandler *mqttHandler = (MQTTHandler *)params;
+        mqttHandler->handleMessage(**event);
         break;
     }
 }
 
 void MQTTHandler::init()
 {
-    PRINTF_MQTT("Initializing MQTT");
 
+    PRINTF_MQTT("Initializing MQTT");
     nvsHandler nvs("eol", "certs");
 
     if (!nvs.init())
@@ -83,23 +93,16 @@ void MQTTHandler::init()
         return;
     }
 
-    char *ca_cert = (char *)malloc(CERT_SIZE + 1);
-    char *client_cert = (char *)malloc(CERT_SIZE + 1);
-    char *client_key = (char *)malloc(CERT_SIZE + 1);
-    memset(ca_cert, 0, CERT_SIZE + 1);
-    memset(client_cert, 0, CERT_SIZE + 1);
-    memset(client_key, 0, CERT_SIZE + 1);
-    size_t ca_size = CERT_SIZE, cert_size = CERT_SIZE, key_size = CERT_SIZE;
+    size_t ca_size = 0, cert_size = 0, key_size = 0;
+    char *ca_cert;
+    char *client_cert;
+    char *client_key;
 
-    if (!ca_cert || !client_cert || !client_key)
+    if (!nvs.loadFromNVS("ca_cert", &ca_cert, &ca_size))
     {
-        PRINTF_MQTT("Failed to allocate memory for certificates");
         free(ca_cert);
-        free(client_cert);
-        free(client_key);
         return;
     }
-
     if (!nvs.loadCertificate(&client_cert, &cert_size))
     {
         free(ca_cert);
@@ -114,49 +117,18 @@ void MQTTHandler::init()
         free(client_key);
         return;
     }
-    if (!nvs.loadFromNVS("ca_cert", &ca_cert, &ca_size))
-    {
-        free(ca_cert);
-        return;
-    }
 
-    ca_size = strlen(ca_cert) + 1;
-    cert_size = strlen(client_cert) + 1;
-    key_size = strlen(client_key) + 1;
-
-    PRINTF_MQTT("CA cert: %s", ca_cert);
-    PRINTF_MQTT("Client cert: %s", client_cert);
-    PRINTF_MQTT("Client key: %s", client_key);
-
-    PRINTF_MQTT("CA cert size: %d bytes", ca_size);
-    PRINTF_MQTT("Client cert size: %d bytes", cert_size);
-    PRINTF_MQTT("Client key size: %d bytes", key_size);
-
-    esp_mqtt_client_config_t mqttConfig = {};
-    std::string uri = "mqtts://" + std::string(CONFIG_MQTT_BROKER_URI) + ":" + std::to_string(8883);
+    std::string uri = "mqtts://" + std::string(CONFIG_MQTT_BROKER_URI) + ":" + std::to_string(CONFIG_MQTT_BROKER_PORT);
     PRINTF_MQTT("URI: %s", uri.c_str());
+    esp_mqtt_client_config_t mqttConfig = {};
     mqttConfig.broker.address.uri = uri.c_str();
-    mqttConfig.broker.verification.certificate = (const char*)ca_cert;
-    mqttConfig.broker.verification.certificate_len = ca_size;
-    mqttConfig.credentials.authentication.certificate = (const char*)client_cert;
-    mqttConfig.credentials.authentication.certificate_len = cert_size;
-    mqttConfig.credentials.authentication.key = (const char*)client_key;
-    mqttConfig.credentials.authentication.key_len = key_size;
-    //mqttConfig.broker.address.port = CONFIG_MQTT_BROKER_PORT;
-    mqttConfig.network.timeout_ms = 20000;
-    mqttConfig.network.reconnect_timeout_ms = 10000;
-    mqttConfig.session.keepalive = 60;
-    mqttConfig.session.disable_clean_session = true;
-    mqttConfig.buffer.size = 2048;
-    mqttConfig.buffer.out_size = 2048;
-    mqttConfig.task.stack_size = 8192;
-    mqttConfig.broker.verification.common_name = "server";
-    //mqttConfig.broker.verification.skip_cert_common_name_check = true;
-    // Useful?
-    // mqtt_cfg.credentials.client_id = std::to_string(deviceId).c_str();
+    mqttConfig.broker.verification.skip_cert_common_name_check = true;
+    mqttConfig.broker.verification.certificate = (const char *)ca_cert;
+    mqttConfig.credentials.authentication.certificate = (const char *)client_cert;
+    mqttConfig.credentials.authentication.key = (const char *)client_key;
+    mqttConfig.credentials.client_id = playerID;
 
-    vTaskDelay(pdMS_TO_TICKS(2000));
-
+    vTaskDelay(pdMS_TO_TICKS(500));
 
     this->params->mqttClient = esp_mqtt_client_init(&mqttConfig);
     if (this->params->mqttClient == NULL)
@@ -167,14 +139,6 @@ void MQTTHandler::init()
         free(client_key);
     }
 
-    esp_err_t err = esp_mqtt_client_start(this->params->mqttClient);
-    if (err != ESP_OK) {
-        PRINTF_MQTT("Failed to start MQTT client: %s", esp_err_to_name(err));
-        free(ca_cert);
-        free(client_cert);
-        free(client_key);
-        return;
-    }
     ESP_ERROR_CHECK(esp_mqtt_client_register_event(this->params->mqttClient, MQTT_EVENT_ANY, mqtt_event_handler, this->params));
     ESP_ERROR_CHECK(esp_mqtt_client_start(this->params->mqttClient));
 
@@ -182,6 +146,7 @@ void MQTTHandler::init()
     subscribe("/spelare/" + std::string(playerID) + "/downlink");
     subscribe("/myndigheten");
 
+    free(playerID);
     free(ca_cert);
     free(client_cert);
     free(client_key);
@@ -189,11 +154,14 @@ void MQTTHandler::init()
 
 void MQTTHandler::publishMessage(const std::string &topic, const std::string &message)
 {
-    publish(topic, message);
+    PRINTF_MQTT("Publishing message to topic %s", topic.c_str());
+    esp_mqtt_client_publish(this->params->mqttClient, topic.c_str(), message.c_str(), message.size(), 0, 0);
 }
 
 void MQTTHandler::subscribe(const std::string &topic)
 {
+    PRINTF_MQTT("Subscribing to topic %s", topic.c_str());
+    esp_mqtt_client_subscribe(this->params->mqttClient, topic.c_str(), 0);
 }
 
 void MQTTHandler::setEventGroup(EventGroupHandle_t *eventGroup)
@@ -201,28 +169,10 @@ void MQTTHandler::setEventGroup(EventGroupHandle_t *eventGroup)
     this->params->mqttEventGroup = *eventGroup;
 }
 
-void MQTTHandler::setBrokerURI()
+void MQTTHandler::handleMessage(esp_mqtt_event_t event)
 {
-}
-
-void MQTTHandler::setClientID(const std::string &clientID)
-{
-}
-
-void MQTTHandler::onPlayerMessage(const char* topic, const char* message) {
-    // Handle messages from the open forum or players' uplinks
-}
-
-void MQTTHandler::onAuthorityMessage(const char* message) {
-    // Handle server broadcast messages (e.g., new round, sabotage, etc.)
-}
-
-void MQTTHandler::onLeaderElection(const char* message) {
-    // Handle leader election decisions (e.g., send "ok" or "neka")
-}
-
-void MQTTHandler::onMissionResult(const char* message) {
-    // Handle mission success or sabotage outcomes
+    // PRINT MESSAGE
+    PRINTF_MQTT("Received message on topic %s: \n%s", event.topic, event.data);
 }
 
 EventGroupHandle_t MQTTHandler::getEventGroup()

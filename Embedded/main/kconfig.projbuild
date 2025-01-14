@@ -1,7 +1,7 @@
 menu "MQTT"
     config MQTT_BROKER_URI
         string "MQTT Broker URI"
-        default "test.mosquitto.org"
+        default "192.168.0.14"
         help 
             "MQTT Broker URI, mqtts:// is prefixed to the URI"
 
@@ -10,6 +10,14 @@ menu "MQTT"
         default 8884
         help 
             "MQTT Broker Port"
+endmenu
+
+menu "HTTPS"
+    config HTTPS_SERVER_URI
+        string "HTTPS Server URI"
+        default "https://192.168.0.14:9191"
+        help 
+            "HTTPS Server URI, port included"
 endmenu
 
 menu "UART"

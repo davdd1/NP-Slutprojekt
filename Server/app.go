@@ -10,6 +10,7 @@ import (
 	"math/big"
 	"net/http"
 	"os"
+	"strconv"
 	"time"
 
 	"github.com/gin-gonic/gin"
@@ -23,61 +24,52 @@ const (
 	serverKeyFile  = "cert/server.key" // Path to server key
 )
 
-// init() will be called before main() to initialize server and certificates
 func init() {
 
 	log.Println("Initializing Go server...")
 
-	// Load server certificate and key
 	serverCert, err := tls.LoadX509KeyPair(serverCertFile, serverKeyFile)
 	if err != nil {
 		log.Fatalf("Failed to load server cert/key: %v", err)
 	}
 
 	certPool := x509.NewCertPool()
-	// Read the CA certificate
 	caCert, err := os.ReadFile(caCertFile)
 	if err != nil {
 		log.Fatalf("Failed to read CA cert file: %v", err)
 	}
 
-	// Create a cert pool and append the CA cert for client verification
 	certPool.AppendCertsFromPEM(caCert)
 
-	// Create TLS config with CA for client certificate verification
 	tlsConfig := &tls.Config{
-		ClientCAs:          certPool,                      // The CA cert pool to verify the client certificates
-		ClientAuth:         tls.VerifyClientCertIfGiven,   // Require client certificates and verify them
-		Certificates:       []tls.Certificate{serverCert}, // Server certificate for the server side of the TLS connection
-		InsecureSkipVerify: true,                          // Set to false to ensure strict validation (turn to true for a more lenient check)
+		ClientCAs:          certPool,                      
+		ClientAuth:         tls.VerifyClientCertIfGiven,   
+		Certificates:       []tls.Certificate{serverCert}, 
+		InsecureSkipVerify: true,
 	}
 
 	router := gin.Default()
-	// Enable logger middleware
 	router.Use(gin.Logger())
 	router.POST("/spelare/csr", HandleSignCSR)
 	router.POST("/spelare", playerIDHandler)
 
-	// Create the HTTP server with the configured TLS settings
 	server := &http.Server{
-		Addr:      ":9191",   // Define server listening port
-		TLSConfig: tlsConfig, // Use the TLS config
-		Handler:   router,    // Use the router as the handler
+		Addr:      ":9191",   
+		TLSConfig: tlsConfig, 
+		Handler:   router,    
 	}
 
-		// Start the HTTPS server
-		log.Println("Starting Go server on https://localhost:9191")
-		if err := server.ListenAndServeTLS("", ""); err != nil {
-			log.Fatalf("Failed to start HTTPS server: %v", err)
-		}
+	// Start the HTTPS server
+	log.Println("Starting Go server on https://localhost:9191")
+	if err := server.ListenAndServeTLS("", ""); err != nil {
+		log.Fatalf("Failed to start HTTPS server: %v", err)
+	}
 }
 
 // Handler for creating CSR and returning the signed certificate
 // TODO: Make sure only one cert per player ID
 func HandleSignCSR(c *gin.Context) {
-	// IMPORTANT: Common name is the player ID, only one cert per player ID
 
-	// Expect the client to send CSR data in the request body
 	log.Printf("Received Content-Type: %s", c.Request.Header.Get("Content-Type"))
 
 	csrData, err := io.ReadAll(c.Request.Body)
@@ -93,7 +85,6 @@ func HandleSignCSR(c *gin.Context) {
 		return
 	}
 
-	// Decode the CSR
 	block, _ := pem.Decode(csrData)
 	if block == nil {
 		log.Println("Failed to decode CSR PEM")
@@ -101,7 +92,6 @@ func HandleSignCSR(c *gin.Context) {
 		return
 	}
 
-	// Parse the CSR
 	csr, err := x509.ParseCertificateRequest(block.Bytes)
 	if err != nil {
 		log.Printf("Failed to parse CSR: %v", err)
@@ -109,7 +99,6 @@ func HandleSignCSR(c *gin.Context) {
 		return
 	}
 
-	// Ensure CSR is signed by the client
 	if err := csr.CheckSignature(); err != nil {
 		log.Printf("CSR signature check failed: %v", err)
 		c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid CSR signature"})
@@ -156,6 +145,7 @@ func HandleSignCSR(c *gin.Context) {
 	var caKey interface{}
 	switch caKeyBlock.Type {
 	case "RSA PRIVATE KEY":
+		log.Println("Parsing RSA private key")
 		caKey, err = x509.ParsePKCS1PrivateKey(caKeyBlock.Bytes)
 		if err != nil {
 			log.Printf("Failed to parse RSA private key: %v", err)
@@ -163,6 +153,7 @@ func HandleSignCSR(c *gin.Context) {
 			return
 		}
 	case "EC PRIVATE KEY":
+		log.Println("Parsing EC private key")
 		caKey, err = x509.ParseECPrivateKey(caKeyBlock.Bytes)
 		if err != nil {
 			log.Printf("Failed to parse EC private key: %v", err)
@@ -170,6 +161,7 @@ func HandleSignCSR(c *gin.Context) {
 			return
 		}
 	case "PRIVATE KEY":
+		log.Println("Parsing PKCS8 private key")
 		caKey, err = x509.ParsePKCS8PrivateKey(caKeyBlock.Bytes)
 		if err != nil {
 			log.Printf("Failed to parse PKCS8 private key: %v", err)
@@ -237,32 +229,22 @@ func HandleSignCSR(c *gin.Context) {
 
 // Give a player ID to a new player, same id for same player
 func givePlayerID() string {
-	// temp
-	// TODO: Implement a way to give a player ID
-	// RAndom number as a string with rand function
-	// For now just return a random number
-	// return strconv.Itoa(rand.Intn(1000))
-	return "321"
-
+	return strconv.FormatInt(time.Now().Unix(), 10)
 }
 
 // Handler for creating a new player ID, need to remember this ID for the player, cant gen
 func playerIDHandler(c *gin.Context) {
 	playerID := givePlayerID()
 
-	// Prepare the response
 	response := gin.H{"id": playerID}
 
-	// Log the response
 	log.Printf("Response sent: %v", response)
 
 	c.Header("Content-Type", "application/json; charset=utf-8")
 
-	// Send the response
 	c.JSON(http.StatusOK, response)
 }
 
 func main() {
 	log.Println("Starting Go server...")
-
 }

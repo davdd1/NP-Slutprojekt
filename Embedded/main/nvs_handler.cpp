@@ -67,7 +67,14 @@ bool nvsHandler::saveToNVS(const char *key, const char *data, size_t dataSize)
         return false;
     }
 
-    esp_err_t nvsResult = nvs_set_str(handle, key, data);
+    esp_err_t nvsResult = nvs_erase_key(handle, key);
+    if (nvsResult != ESP_OK && nvsResult != ESP_ERR_NVS_NOT_FOUND)
+    {
+        PRINTF_NVS("Failed to erase key '%s': %s", key, esp_err_to_name(nvsResult));
+        return false;
+    }
+
+    nvsResult = nvs_set_str(handle, key, data);
     if (nvsResult != ESP_OK)
     {
         PRINTF_NVS("Error writing data to NVS with key '%s': %s", key, esp_err_to_name(nvsResult));
@@ -142,7 +149,6 @@ bool nvsHandler::loadFromNVS(const char *key, char **data, size_t *dataSize)
     }
     return true;
 }
-
 
 bool nvsHandler::eraseCertificate()
 {

@@ -1,10 +1,10 @@
-user localhost
+user go-client
 topic readwrite /torget
 topic readwrite /spelare/+/uplink
 topic write /spelare/+/downlink
 topic write /myndigheten
 
-pattern readwrite #
-
-user 123
-topic readwrite #
+pattern readwrite /torget
+pattern readwrite /spelare/%c/uplink
+pattern write /spelare/%c/downlink
+pattern write /myndigheten

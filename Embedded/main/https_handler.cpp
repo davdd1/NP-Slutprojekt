@@ -12,9 +12,8 @@
 #define CERT_SIZE 2048
 
 HTTPSHandler::HTTPSHandler(const std::string &serverURL)
-    : ca_cert(nullptr), ca_size(CERT_SIZE), signed_cert(nullptr), signed_cert_size(0),
-      private_key(nullptr), private_key_size(0), client(nullptr), serverURL(serverURL),
-      handler(this)
+    : ca_cert(nullptr), signed_cert(nullptr), private_key(nullptr), ca_size(0), signed_cert_size(0), private_key_size(0),
+      csr_data(nullptr), client(nullptr), serverURL(serverURL), playerID(-1), handler(this)
 {
 }
 
@@ -52,31 +51,10 @@ HTTPSHandler::~HTTPSHandler()
     {
         free(csr_data);
     }
-
-    mbedtls_pk_free(&key);
-    mbedtls_x509write_csr_free(&csr);
-    mbedtls_ctr_drbg_free(&ctr_drbg);
-    mbedtls_entropy_free(&entropy);
 }
 
 bool HTTPSHandler::init()
 {
-    // Initialize the random number generator and load the CA certificate
-    mbedtls_entropy_init(&entropy);
-    mbedtls_ctr_drbg_init(&ctr_drbg);
-    const char *pers_string = "STI";
-    if (mbedtls_ctr_drbg_seed(&ctr_drbg, mbedtls_entropy_func, &entropy, (const unsigned char *)pers_string, strlen(pers_string)) != 0)
-    {
-        PRINTF_HTTPS("Failed to seed random number generator");
-        return false;
-    }
-
-    ca_cert = (char *)calloc(1, CERT_SIZE);
-    if (!ca_cert)
-    {
-        PRINTF_HTTPS("Failed to allocate memory for CA certificate");
-        return false;
-    }
 
     nvsHandler nvs("eol", "certs");
     if (!nvs.init())
@@ -93,14 +71,6 @@ bool HTTPSHandler::init()
         return false;
     }
 
-    if (!nvs.saveToNVS("ca_cert", ca_cert, ca_size))
-    {
-        PRINTF_HTTPS("Failed to save CA certificate to NVS");
-        free(ca_cert);
-        return false;
-    }
-
-    PRINTF_HTTPS("CA cert size: %d bytes", ca_size);
     return true;
 }
 
@@ -177,11 +147,13 @@ esp_err_t HTTPSHandler::http_event_handler(esp_http_client_event_t *evt)
                 if (responseStr.find("-----BEGIN CERTIFICATE-----") != std::string::npos)
                 {
                     PRINTF_HTTPS("Certificate received");
-                    handler->storeSignedCertificate(responseStr);
+
+                    handler->storeSignedCertificate(responseStr.c_str());
+                    free(handler->response.buffer);
                 }
                 else
                 {
-                    int playerID = handler->extractPlayerID(responseStr);
+                    int playerID = handler->extractPlayerID(responseStr.c_str());
                     if (playerID != -1)
                     {
                         handler->playerID = playerID;
@@ -197,9 +169,9 @@ esp_err_t HTTPSHandler::http_event_handler(esp_http_client_event_t *evt)
             else
             {
                 PRINTF_HTTPS("Unexpected status code: %d", status_code);
-                handler->response.len = 0;
             }
         }
+        handler->response.len = 0;
         break;
     }
     return ESP_OK;
@@ -220,17 +192,11 @@ int HTTPSHandler::registerPlayer()
     std::string fullURL = serverURL + "/spelare";
     esp_http_client_config_t config = {
         .url = fullURL.c_str(),
-        .port = 9191,
         .cert_pem = ca_cert,
-        .cert_len = ca_size,
         .timeout_ms = 10000,
         .event_handler = http_event_handler,
-        .transport_type = HTTP_TRANSPORT_OVER_SSL,
-        .buffer_size = 2048,
-        .buffer_size_tx = 2048,
         .user_data = this, // User data passed to event handler
         .skip_cert_common_name_check = true,
-        .common_name = "server",
     };
 
     esp_http_client *clientPlayer = esp_http_client_init(&config);
@@ -332,14 +298,36 @@ bool HTTPSHandler::generateCSR(int playerID)
         return false;
     }
 
+    // Initialize the random number generator and load the CA certificate
+    mbedtls_pk_context key;
+    mbedtls_x509write_csr csr;
+    mbedtls_entropy_context entropy;
+    mbedtls_ctr_drbg_context ctr_drbg;
+
     mbedtls_pk_init(&key);
     mbedtls_x509write_csr_init(&csr);
+    mbedtls_entropy_init(&entropy);
+    mbedtls_ctr_drbg_init(&ctr_drbg);
+    const char *pers_string = "STI";
+    if (mbedtls_ctr_drbg_seed(&ctr_drbg, mbedtls_entropy_func, &entropy, (const unsigned char *)pers_string, strlen(pers_string)) != 0)
+    {
+        PRINTF_HTTPS("Failed to seed random number generator");
+        mbedtls_pk_free(&key);
+        mbedtls_x509write_csr_free(&csr);
+        mbedtls_ctr_drbg_free(&ctr_drbg);
+        mbedtls_entropy_free(&entropy);
+        return false;
+    }
 
     // Generate RSA key pair
     ret = mbedtls_pk_setup(&key, mbedtls_pk_info_from_type(MBEDTLS_PK_RSA));
     if (ret != 0)
     {
         PRINTF_HTTPS("Failed to set up RSA key pair:-0x%04x", -ret);
+        mbedtls_pk_free(&key);
+        mbedtls_x509write_csr_free(&csr);
+        mbedtls_ctr_drbg_free(&ctr_drbg);
+        mbedtls_entropy_free(&entropy);
         return false;
     }
 
@@ -347,6 +335,10 @@ bool HTTPSHandler::generateCSR(int playerID)
     if (ret != 0)
     {
         PRINTF_HTTPS("Failed to generate RSA key:-0x%04x", -ret);
+        mbedtls_pk_free(&key);
+        mbedtls_x509write_csr_free(&csr);
+        mbedtls_ctr_drbg_free(&ctr_drbg);
+        mbedtls_entropy_free(&entropy);
         return false;
     }
 
@@ -357,6 +349,10 @@ bool HTTPSHandler::generateCSR(int playerID)
     if (ret != 0)
     {
         PRINTF_HTTPS("Failed to write private key in PEM format: %d", ret);
+        mbedtls_pk_free(&key);
+        mbedtls_x509write_csr_free(&csr);
+        mbedtls_ctr_drbg_free(&ctr_drbg);
+        mbedtls_entropy_free(&entropy);
         return false;
     }
 
@@ -364,6 +360,10 @@ bool HTTPSHandler::generateCSR(int playerID)
     if (!private_key)
     {
         PRINTF_HTTPS("Failed to allocate memory for private key");
+        mbedtls_pk_free(&key);
+        mbedtls_x509write_csr_free(&csr);
+        mbedtls_ctr_drbg_free(&ctr_drbg);
+        mbedtls_entropy_free(&entropy);
         return false;
     }
     strcpy(private_key, (char *)keyBuf);
@@ -371,7 +371,7 @@ bool HTTPSHandler::generateCSR(int playerID)
     private_key[strlen((char *)keyBuf)] = '\0';
 
     char subjectName[64];
-    snprintf(subjectName, sizeof(subjectName), "C=SE,ST=Stockholm,O=STI,CN=%d", playerID);
+    snprintf(subjectName, sizeof(subjectName), "CN=%d", playerID);
     PRINTF_HTTPS("%s", subjectName);
     ret = mbedtls_x509write_csr_set_subject_name(&csr, subjectName);
     if (ret != 0)
@@ -394,6 +394,10 @@ bool HTTPSHandler::generateCSR(int playerID)
     {
         PRINTF_HTTPS("Failed to parse private key:-0x%04x", -ret);
         free(private_key);
+        mbedtls_pk_free(&key);
+        mbedtls_x509write_csr_free(&csr);
+        mbedtls_ctr_drbg_free(&ctr_drbg);
+        mbedtls_entropy_free(&entropy);
         return false;
     }
 
@@ -408,6 +412,10 @@ bool HTTPSHandler::generateCSR(int playerID)
     {
         PRINTF_HTTPS("Failed to write CSR in PEM format: %d", ret);
         free(private_key);
+        mbedtls_pk_free(&key);
+        mbedtls_x509write_csr_free(&csr);
+        mbedtls_ctr_drbg_free(&ctr_drbg);
+        mbedtls_entropy_free(&entropy);
         return false;
     }
 
@@ -416,12 +424,20 @@ bool HTTPSHandler::generateCSR(int playerID)
     {
         PRINTF_HTTPS("Failed to initialize NVS");
         free(private_key);
+        mbedtls_pk_free(&key);
+        mbedtls_x509write_csr_free(&csr);
+        mbedtls_ctr_drbg_free(&ctr_drbg);
+        mbedtls_entropy_free(&entropy);
         return false;
     }
     if (!nvs.savePrivateKey(private_key))
     {
         PRINTF_HTTPS("Failed to save private key to NVS");
         free(private_key);
+        mbedtls_pk_free(&key);
+        mbedtls_x509write_csr_free(&csr);
+        mbedtls_ctr_drbg_free(&ctr_drbg);
+        mbedtls_entropy_free(&entropy);
         return false;
     }
 
@@ -430,6 +446,10 @@ bool HTTPSHandler::generateCSR(int playerID)
     {
         PRINTF_HTTPS("Failed to allocate memory for CSR");
         free(private_key);
+        mbedtls_pk_free(&key);
+        mbedtls_x509write_csr_free(&csr);
+        mbedtls_ctr_drbg_free(&ctr_drbg);
+        mbedtls_entropy_free(&entropy);
         return false;
     }
 
@@ -439,6 +459,10 @@ bool HTTPSHandler::generateCSR(int playerID)
     xEventGroupSetBits(handler->httpsEventGroup, HAS_CSR_BIT);
 
     free(private_key);
+    mbedtls_pk_free(&key);
+    mbedtls_x509write_csr_free(&csr);
+    mbedtls_ctr_drbg_free(&ctr_drbg);
+    mbedtls_entropy_free(&entropy);
     return true;
 }
 
@@ -456,17 +480,10 @@ std::string HTTPSHandler::sendCSRAndReceiveCertificate()
     std::string fullURL = serverURL + uri;
     esp_http_client_config_t config = {
         .url = fullURL.c_str(),
-        .port = 9191,
         .cert_pem = ca_cert,
-        .cert_len = ca_size,
-        .timeout_ms = 10000,
         .event_handler = http_event_handler,
-        .transport_type = HTTP_TRANSPORT_OVER_SSL,
-        .buffer_size = 4096,
-        .buffer_size_tx = 4096,
         .user_data = this,
         .skip_cert_common_name_check = true,
-        .common_name = "server",
     };
 
     esp_http_client *clientCSR = esp_http_client_init(&config);
@@ -477,7 +494,7 @@ std::string HTTPSHandler::sendCSRAndReceiveCertificate()
         return "";
     }
 
-    esp_http_client_set_header(clientCSR, "Content-Type", "application/pkcs1");
+    esp_http_client_set_header(clientCSR, "Content-Type", "application/pkcs8");
     esp_http_client_set_method(clientCSR, HTTP_METHOD_POST);
     esp_http_client_set_post_field(clientCSR, csr_data, strlen(csr_data));
 
@@ -521,68 +538,78 @@ std::string HTTPSHandler::sendCSRAndReceiveCertificate()
     return "";
 }
 
-bool HTTPSHandler::storeSignedCertificate(const std::string &certData)
+bool HTTPSHandler::storeSignedCertificate(const char *certData)
 {
     mbedtls_x509_crt cert;
     mbedtls_x509_crt_init(&cert);
-    int ret = mbedtls_x509_crt_parse(&cert, (const unsigned char *)certData.c_str(), certData.size() + 1);
+    int ret = mbedtls_x509_crt_parse(&cert, (const unsigned char *)certData, strlen(certData) + 1);
     if (ret != 0)
     {
         PRINTF_HTTPS("Failed to parse signed certificate: -0x%04x", -ret);
         char error_buf[100];
         mbedtls_strerror(ret, error_buf, sizeof(error_buf));
         PRINTF_HTTPS("Error: %s", error_buf);
+        mbedtls_x509_crt_free(&cert);
         return false;
     }
+
+    // Beräkna buffertstorlek för PEM-format och allokera minne
     size_t der_cert_size = cert.raw.len;
-    size_t pem_buffer_size = der_cert_size * 1.5 + 32; // 1.5x larger than DER + some extra space. Safe bet.
-    signed_cert = (char *)malloc(pem_buffer_size);
-    if (!signed_cert)
+    size_t pem_buffer_size = der_cert_size * 5; // Säkerhetsmarginal
+    char *pem_cert = (char *)malloc(pem_buffer_size);
+    if (!pem_cert)
     {
         PRINTF_HTTPS("Failed to allocate memory for signed certificate");
         mbedtls_x509_crt_free(&cert);
         return false;
     }
+
     size_t pem_cert_len = 0;
-    ret = mbedtls_pem_write_buffer("-----BEGIN CERTIFICATE-----\n", "-----END CERTIFICATE-----\n", cert.raw.p, cert.raw.len, (unsigned char *)signed_cert, pem_buffer_size, &pem_cert_len);
+    ret = mbedtls_pem_write_buffer("-----BEGIN CERTIFICATE-----\n",
+                                   "-----END CERTIFICATE-----\n",
+                                   cert.raw.p, cert.raw.len,
+                                   (unsigned char *)pem_cert, pem_buffer_size,
+                                   &pem_cert_len);
     if (ret != 0)
     {
         PRINTF_HTTPS("Failed to write signed certificate in PEM format: -0x%04x", -ret);
-        free(signed_cert);
-        signed_cert = nullptr;
+        free(pem_cert);
         mbedtls_x509_crt_free(&cert);
         return false;
     }
 
-    signed_cert[pem_cert_len] = '\0';
+    if (pem_cert_len < pem_buffer_size)
+    {
+        pem_cert[pem_cert_len] = '\0';
+    }
+    else
+    {
+        PRINTF_HTTPS("PEM certificate length reached buffer size, cannot null-terminate safely");
+        free(pem_cert);
+        mbedtls_x509_crt_free(&cert);
+        return false;
+    }
 
     nvsHandler nvs("eol", "certs");
     if (!nvs.init())
     {
         PRINTF_HTTPS("Failed to initialize NVS");
-        free(signed_cert);
-        signed_cert = nullptr;
-        mbedtls_x509_crt_free(&cert);
-        return false;
-    }
-    if (!nvs.saveCertificate(signed_cert))
-    {
-        PRINTF_HTTPS("Failed to save signed certificate to NVS");
-        free(signed_cert);
-        signed_cert = nullptr;
-        mbedtls_x509_crt_free(&cert);
-        return false;
-    }
-    if (!nvs.saveToNVS("ca_cert", ca_cert, ca_size))
-    {
-        PRINTF_HTTPS("Failed to save CA certificate to NVS");
-        free(signed_cert);
-        signed_cert = nullptr;
+        free(pem_cert);
         mbedtls_x509_crt_free(&cert);
         return false;
     }
 
-    PRINTF_HTTPS("Signed certificate loaded and stored in NVS successfully");
+    vTaskDelay(pdMS_TO_TICKS(100));
+
+    if (!nvs.saveCertificate(pem_cert))
+    {
+        PRINTF_HTTPS("Failed to save signed certificate to NVS");
+        free(pem_cert);
+        mbedtls_x509_crt_free(&cert);
+        return false;
+    }
+
+    free(pem_cert);
     mbedtls_x509_crt_free(&cert);
     xEventGroupSetBits(handler->httpsEventGroup, HAS_SIGNED_CERT_BIT);
     return true;
@@ -595,17 +622,10 @@ std::string HTTPSHandler::startGame()
     std::string fullURL = serverURL + "/start";
     esp_http_client_config_t config = {
         .url = fullURL.c_str(),
-        .port = 9191,
         .cert_pem = ca_cert,
-        .cert_len = ca_size,
-        .timeout_ms = 10000,
         .event_handler = http_event_handler,
-        .transport_type = HTTP_TRANSPORT_OVER_SSL,
-        .buffer_size = 2048,
-        .buffer_size_tx = 2048,
         .user_data = this,
         .skip_cert_common_name_check = true,
-        .common_name = "server",
     };
 
     esp_http_client *clientGame = esp_http_client_init(&config);
@@ -649,7 +669,7 @@ std::string HTTPSHandler::startGame()
 void httpsTask(void *pvParameters)
 {
     EventGroupHandle_t eventGroup = (EventGroupHandle_t)pvParameters;
-    std::string url = "https://192.168.0.14:9191";
+    std::string url = CONFIG_HTTPS_SERVER_URI;
     HTTPSHandler *httpsHandler = new HTTPSHandler(url);
     httpsHandler->httpsEventGroup = eventGroup;
     if (!httpsHandler->init())
@@ -692,7 +712,7 @@ void httpsTask(void *pvParameters)
 
     xEventGroupSetBits(httpsHandler->getEventGroup(), HTTPS_READY_BIT);
 
-    //httpsHandler->startGame();
+    // httpsHandler->startGame();
 
     while (true)
     {
