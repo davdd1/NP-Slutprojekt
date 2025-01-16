@@ -1,3 +1,6 @@
 cert/
 mosquitto/cert/
 mosquitto/log/
+*.log
+*.crt
+*.key
