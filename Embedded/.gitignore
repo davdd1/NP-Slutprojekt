@@ -8,3 +8,6 @@ cert/*
 
 .env
 *.bin
+*.log
+*.crt
+*.key
