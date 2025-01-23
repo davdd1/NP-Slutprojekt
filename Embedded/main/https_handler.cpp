@@ -237,7 +237,6 @@ int HTTPSHandler::registerPlayer()
         vTaskDelay(pdMS_TO_TICKS(10));
     }
 
-    PRINTF_HTTPS("Player registered with ID: %d", playerID);
     esp_http_client_cleanup(clientPlayer);
     return playerID;
 }
@@ -372,7 +371,6 @@ bool HTTPSHandler::generateCSR(int playerID)
 
     char subjectName[64];
     snprintf(subjectName, sizeof(subjectName), "CN=%d", playerID);
-    PRINTF_HTTPS("%s", subjectName);
     ret = mbedtls_x509write_csr_set_subject_name(&csr, subjectName);
     if (ret != 0)
     {
@@ -380,10 +378,6 @@ bool HTTPSHandler::generateCSR(int playerID)
         free(private_key);
         return false;
     }
-
-    PRINTF_HTTPS("Private key: %s", private_key);
-    PRINTF_HTTPS("Private key length: %d", strlen(private_key));
-    PRINTF_HTTPS("Private key size: %d", private_key_size);
 
     // parse_key needs pk context to be reset
     mbedtls_pk_free(&key);
@@ -525,7 +519,6 @@ std::string HTTPSHandler::sendCSRAndReceiveCertificate()
     {
         PRINTF_HTTPS("No valid response received.");
         esp_http_client_cleanup(clientCSR);
-        free(response.buffer);
         return "";
     }
 
@@ -679,9 +672,10 @@ void httpsTask(void *pvParameters)
         return;
     }
 
+    vTaskDelay(pdMS_TO_TICKS(1000));
+
     int playerID = httpsHandler->registerPlayer();
     xEventGroupWaitBits(httpsHandler->getEventGroup(), HAS_PLAYER_ID_BIT, pdFALSE, pdTRUE, portMAX_DELAY);
-    PRINTF_HTTPS("Player ID: %d", playerID);
 
     // Incase of failure, retry registration
     while (playerID == -1)
@@ -712,7 +706,7 @@ void httpsTask(void *pvParameters)
 
     xEventGroupSetBits(httpsHandler->getEventGroup(), HTTPS_READY_BIT);
 
-    // httpsHandler->startGame();
+    //httpsHandler->startGame();
 
     while (true)
     {

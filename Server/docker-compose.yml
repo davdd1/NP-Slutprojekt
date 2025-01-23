@@ -17,3 +17,4 @@ services:
       - ./mosquitto/acl:/mosquitto/acl
       - ./mosquitto/cert:/mosquitto/cert
       - ./cert:/cert
+      - ./mosquitto/log:/mosquitto/log

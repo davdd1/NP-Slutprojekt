@@ -1,0 +1,1547 @@
+1737023488: mosquitto version 2.0.20 starting
+1737023488: Config loaded from /mosquitto/config/mosquitto.conf.
+1737023488: Warning: ACL pattern '/torget' does not contain '%c' or '%u'.
+1737023488: Warning: ACL pattern '/myndigheten' does not contain '%c' or '%u'.
+1737023488: Opening ipv4 listen socket on port 8884.
+1737023488: Opening ipv6 listen socket on port 8884.
+1737023488: Opening ipv4 listen socket on port 8883.
+1737023488: Opening ipv6 listen socket on port 8883.
+1737023488: mosquitto version 2.0.20 running
+1737023489: New connection from 172.18.0.1:38728 on port 8884.
+1737023489: OpenSSL Error[0]: error:0A000126:SSL routines::unexpected eof while reading
+1737023489: Client <unknown> disconnected: Protocol error.
+1737023491: New connection from 172.18.0.1:38736 on port 8884.
+1737023491: OpenSSL Error[0]: error:0A000126:SSL routines::unexpected eof while reading
+1737023491: Client <unknown> disconnected: Protocol error.
+1737023493: New connection from 172.18.0.1:52012 on port 8884.
+1737023493: OpenSSL Error[0]: error:0A000126:SSL routines::unexpected eof while reading
+1737023493: Client <unknown> disconnected: Protocol error.
+1737023495: New connection from 172.18.0.1:52028 on port 8884.
+1737023495: OpenSSL Error[0]: error:0A000126:SSL routines::unexpected eof while reading
+1737023495: Client <unknown> disconnected: Protocol error.
+1737023505: New connection from 172.18.0.1:51112 on port 8884.
+1737023505: OpenSSL Error[0]: error:0A000126:SSL routines::unexpected eof while reading
+1737023505: Client <unknown> disconnected: Protocol error.
+1737023515: New connection from 172.18.0.1:53516 on port 8884.
+1737023515: OpenSSL Error[0]: error:0A000126:SSL routines::unexpected eof while reading
+1737023515: Client <unknown> disconnected: Protocol error.
+1737023530: New connection from 172.18.0.1:41754 on port 8884.
+1737023530: OpenSSL Error[0]: error:0A000126:SSL routines::unexpected eof while reading
+1737023530: Client <unknown> disconnected: Protocol error.
+1737023545: New connection from 172.18.0.1:37984 on port 8884.
+1737023545: OpenSSL Error[0]: error:0A000126:SSL routines::unexpected eof while reading
+1737023545: Client <unknown> disconnected: Protocol error.
+1737023560: New connection from 172.18.0.1:34198 on port 8884.
+1737023561: OpenSSL Error[0]: error:0A000126:SSL routines::unexpected eof while reading
+1737023561: Client <unknown> disconnected: Protocol error.
+1737023576: New connection from 172.18.0.1:52104 on port 8884.
+1737023576: OpenSSL Error[0]: error:0A000126:SSL routines::unexpected eof while reading
+1737023576: Client <unknown> disconnected: Protocol error.
+1737023591: New connection from 172.18.0.1:60828 on port 8884.
+1737023591: OpenSSL Error[0]: error:0A000126:SSL routines::unexpected eof while reading
+1737023591: Client <unknown> disconnected: Protocol error.
+1737023606: New connection from 172.18.0.1:41106 on port 8884.
+1737023606: OpenSSL Error[0]: error:0A000126:SSL routines::unexpected eof while reading
+1737023606: Client <unknown> disconnected: Protocol error.
+1737023616: New connection from 172.18.0.1:60816 on port 8884.
+1737023616: OpenSSL Error[0]: error:0A000126:SSL routines::unexpected eof while reading
+1737023616: Client <unknown> disconnected: Protocol error.
+1737023626: New connection from 172.18.0.1:42986 on port 8884.
+1737023626: OpenSSL Error[0]: error:0A000126:SSL routines::unexpected eof while reading
+1737023626: Client <unknown> disconnected: Protocol error.
+1737023641: New connection from 172.18.0.1:48384 on port 8884.
+1737023641: OpenSSL Error[0]: error:0A000126:SSL routines::unexpected eof while reading
+1737023641: Client <unknown> disconnected: Protocol error.
+1737023651: New connection from 172.18.0.1:56128 on port 8884.
+1737023651: OpenSSL Error[0]: error:0A000126:SSL routines::unexpected eof while reading
+1737023651: Client <unknown> disconnected: Protocol error.
+1737023661: New connection from 172.18.0.1:46096 on port 8884.
+1737023661: OpenSSL Error[0]: error:0A000126:SSL routines::unexpected eof while reading
+1737023661: Client <unknown> disconnected: Protocol error.
+1737023671: New connection from 172.18.0.1:44362 on port 8884.
+1737023671: OpenSSL Error[0]: error:0A000126:SSL routines::unexpected eof while reading
+1737023671: Client <unknown> disconnected: Protocol error.
+1737023682: New connection from 172.18.0.1:34268 on port 8884.
+1737023682: OpenSSL Error[0]: error:0A000126:SSL routines::unexpected eof while reading
+1737023682: Client <unknown> disconnected: Protocol error.
+1737023697: New connection from 172.18.0.1:51274 on port 8884.
+1737023697: OpenSSL Error[0]: error:0A000126:SSL routines::unexpected eof while reading
+1737023697: Client <unknown> disconnected: Protocol error.
+1737023712: New connection from 172.18.0.1:38156 on port 8884.
+1737023712: OpenSSL Error[0]: error:0A000126:SSL routines::unexpected eof while reading
+1737023712: Client <unknown> disconnected: Protocol error.
+1737023722: New connection from 172.18.0.1:46884 on port 8884.
+1737023722: OpenSSL Error[0]: error:0A000126:SSL routines::unexpected eof while reading
+1737023722: Client <unknown> disconnected: Protocol error.
+1737023732: New connection from 172.18.0.1:52956 on port 8884.
+1737023732: OpenSSL Error[0]: error:0A000126:SSL routines::unexpected eof while reading
+1737023732: Client <unknown> disconnected: Protocol error.
+1737023747: New connection from 172.18.0.1:45880 on port 8884.
+1737023747: OpenSSL Error[0]: error:0A000126:SSL routines::unexpected eof while reading
+1737023747: Client <unknown> disconnected: Protocol error.
+1737023757: New connection from 172.18.0.1:57362 on port 8884.
+1737023757: OpenSSL Error[0]: error:0A000126:SSL routines::unexpected eof while reading
+1737023757: Client <unknown> disconnected: Protocol error.
+1737023767: New connection from 172.18.0.1:57352 on port 8884.
+1737023767: OpenSSL Error[0]: error:0A000126:SSL routines::unexpected eof while reading
+1737023767: Client <unknown> disconnected: Protocol error.
+1737023777: New connection from 172.18.0.1:37500 on port 8884.
+1737023777: OpenSSL Error[0]: error:0A000126:SSL routines::unexpected eof while reading
+1737023777: Client <unknown> disconnected: Protocol error.
+1737023793: Client connection from 172.18.0.1 failed: error:0A000126:SSL routines::unexpected eof while reading.
+1737023803: New connection from 172.18.0.1:46320 on port 8884.
+1737023803: OpenSSL Error[0]: error:0A000126:SSL routines::unexpected eof while reading
+1737023803: Client <unknown> disconnected: Protocol error.
+1737023813: Client connection from 172.18.0.1 failed: error:0A000126:SSL routines::unexpected eof while reading.
+1737023823: New connection from 172.18.0.1:52428 on port 8884.
+1737023823: OpenSSL Error[0]: error:0A000126:SSL routines::unexpected eof while reading
+1737023823: Client <unknown> disconnected: Protocol error.
+1737023838: New connection from 172.18.0.1:49684 on port 8884.
+1737023839: OpenSSL Error[0]: error:0A000126:SSL routines::unexpected eof while reading
+1737023839: Client <unknown> disconnected: Protocol error.
+1737023854: New connection from 172.18.0.1:47544 on port 8884.
+1737023854: OpenSSL Error[0]: error:0A000126:SSL routines::unexpected eof while reading
+1737023854: Client <unknown> disconnected: Protocol error.
+1737023864: New connection from 172.18.0.1:48536 on port 8884.
+1737023864: OpenSSL Error[0]: error:0A000126:SSL routines::unexpected eof while reading
+1737023864: Client <unknown> disconnected: Protocol error.
+1737023879: New connection from 172.18.0.1:37990 on port 8884.
+1737023879: OpenSSL Error[0]: error:0A000126:SSL routines::unexpected eof while reading
+1737023879: Client <unknown> disconnected: Protocol error.
+1737023889: New connection from 172.18.0.1:43950 on port 8884.
+1737023890: OpenSSL Error[0]: error:0A000126:SSL routines::unexpected eof while reading
+1737023890: Client <unknown> disconnected: Protocol error.
+1737023900: Client connection from 172.18.0.1 failed: error:0A000126:SSL routines::unexpected eof while reading.
+1737023915: New connection from 172.18.0.1:40634 on port 8884.
+1737023915: OpenSSL Error[0]: error:0A000126:SSL routines::unexpected eof while reading
+1737023915: Client <unknown> disconnected: Protocol error.
+1737023925: New connection from 172.18.0.1:45812 on port 8884.
+1737023925: OpenSSL Error[0]: error:0A000126:SSL routines::unexpected eof while reading
+1737023925: Client <unknown> disconnected: Protocol error.
+1737023935: New connection from 172.18.0.1:32932 on port 8884.
+1737023935: OpenSSL Error[0]: error:0A000126:SSL routines::unexpected eof while reading
+1737023935: Client <unknown> disconnected: Protocol error.
+1737023950: New connection from 172.18.0.1:47618 on port 8884.
+1737023950: OpenSSL Error[0]: error:0A000126:SSL routines::unexpected eof while reading
+1737023950: Client <unknown> disconnected: Protocol error.
+1737023965: New connection from 172.18.0.1:41796 on port 8884.
+1737023965: OpenSSL Error[0]: error:0A000126:SSL routines::unexpected eof while reading
+1737023965: Client <unknown> disconnected: Protocol error.
+1737023980: New connection from 172.18.0.1:33616 on port 8884.
+1737023980: OpenSSL Error[0]: error:0A000126:SSL routines::unexpected eof while reading
+1737023980: Client <unknown> disconnected: Protocol error.
+1737023997: New connection from 172.18.0.1:55018 on port 8884.
+1737023997: OpenSSL Error[0]: error:0A000126:SSL routines::unexpected eof while reading
+1737023997: Client <unknown> disconnected: Protocol error.
+1737024012: New connection from 172.18.0.1:33702 on port 8884.
+1737024012: OpenSSL Error[0]: error:0A000126:SSL routines::unexpected eof while reading
+1737024012: Client <unknown> disconnected: Protocol error.
+1737024027: New connection from 172.18.0.1:37344 on port 8884.
+1737024027: OpenSSL Error[0]: error:0A000126:SSL routines::unexpected eof while reading
+1737024027: Client <unknown> disconnected: Protocol error.
+1737024042: New connection from 172.18.0.1:46892 on port 8884.
+1737024042: OpenSSL Error[0]: error:0A000126:SSL routines::unexpected eof while reading
+1737024042: Client <unknown> disconnected: Protocol error.
+1737024057: New connection from 172.18.0.1:50462 on port 8884.
+1737024057: OpenSSL Error[0]: error:0A000126:SSL routines::unexpected eof while reading
+1737024057: Client <unknown> disconnected: Protocol error.
+1737024068: New connection from 172.18.0.1:57618 on port 8884.
+1737024068: OpenSSL Error[0]: error:0A000126:SSL routines::unexpected eof while reading
+1737024068: Client <unknown> disconnected: Protocol error.
+1737024083: New connection from 172.18.0.1:46672 on port 8884.
+1737024083: OpenSSL Error[0]: error:0A000126:SSL routines::unexpected eof while reading
+1737024083: Client <unknown> disconnected: Protocol error.
+1737024099: New connection from 172.18.0.1:55442 on port 8884.
+1737024099: OpenSSL Error[0]: error:0A000126:SSL routines::unexpected eof while reading
+1737024099: Client <unknown> disconnected: Protocol error.
+1737024114: Client connection from 172.18.0.1 failed: error:0A000126:SSL routines::unexpected eof while reading.
+1737024124: Client connection from 172.18.0.1 failed: error:0A000126:SSL routines::unexpected eof while reading.
+1737024139: New connection from 172.18.0.1:53392 on port 8884.
+1737024139: OpenSSL Error[0]: error:0A000126:SSL routines::unexpected eof while reading
+1737024139: Client <unknown> disconnected: Protocol error.
+1737024154: New connection from 172.18.0.1:33888 on port 8884.
+1737024154: OpenSSL Error[0]: error:0A000126:SSL routines::unexpected eof while reading
+1737024154: Client <unknown> disconnected: Protocol error.
+1737024169: New connection from 172.18.0.1:36392 on port 8884.
+1737024169: OpenSSL Error[0]: error:0A000126:SSL routines::unexpected eof while reading
+1737024169: Client <unknown> disconnected: Protocol error.
+1737024179: New connection from 172.18.0.1:44676 on port 8884.
+1737024180: OpenSSL Error[0]: error:0A000126:SSL routines::unexpected eof while reading
+1737024180: Client <unknown> disconnected: Protocol error.
+1737024195: Client connection from 172.18.0.1 failed: error:0A000126:SSL routines::unexpected eof while reading.
+1737024205: Client connection from 172.18.0.1 failed: error:0A000126:SSL routines::unexpected eof while reading.
+1737024220: New connection from 172.18.0.1:58754 on port 8884.
+1737024220: OpenSSL Error[0]: error:0A000126:SSL routines::unexpected eof while reading
+1737024220: Client <unknown> disconnected: Protocol error.
+1737024235: New connection from 172.18.0.1:40200 on port 8884.
+1737024235: OpenSSL Error[0]: error:0A000126:SSL routines::unexpected eof while reading
+1737024235: Client <unknown> disconnected: Protocol error.
+1737024250: Client connection from 172.18.0.1 failed: error:0A000126:SSL routines::unexpected eof while reading.
+1737024260: New connection from 172.18.0.1:46256 on port 8884.
+1737024260: OpenSSL Error[0]: error:0A000126:SSL routines::unexpected eof while reading
+1737024260: Client <unknown> disconnected: Protocol error.
+1737024275: New connection from 172.18.0.1:38740 on port 8884.
+1737024275: OpenSSL Error[0]: error:0A000126:SSL routines::unexpected eof while reading
+1737024275: Client <unknown> disconnected: Protocol error.
+1737024285: New connection from 172.18.0.1:35010 on port 8884.
+1737024285: OpenSSL Error[0]: error:0A000126:SSL routines::unexpected eof while reading
+1737024285: Client <unknown> disconnected: Protocol error.
+1737024296: New connection from 172.18.0.1:32872 on port 8884.
+1737024296: OpenSSL Error[0]: error:0A000126:SSL routines::unexpected eof while reading
+1737024296: Client <unknown> disconnected: Protocol error.
+1737024306: New connection from 172.18.0.1:42362 on port 8884.
+1737024306: OpenSSL Error[0]: error:0A000126:SSL routines::unexpected eof while reading
+1737024306: Client <unknown> disconnected: Protocol error.
+1737024316: New connection from 172.18.0.1:50212 on port 8884.
+1737024316: OpenSSL Error[0]: error:0A000126:SSL routines::unexpected eof while reading
+1737024316: Client <unknown> disconnected: Protocol error.
+1737024326: New connection from 172.18.0.1:32956 on port 8884.
+1737024326: OpenSSL Error[0]: error:0A000126:SSL routines::unexpected eof while reading
+1737024326: Client <unknown> disconnected: Protocol error.
+1737024331: mosquitto version 2.0.20 terminating
+1737024331: Saving in-memory database to mosquitto.db.
+1737024331: Error saving in-memory database, unable to open mosquitto.db.new for writing.
+1737024331: Error: Permission denied.
+1737024349: mosquitto version 2.0.20 starting
+1737024349: Config loaded from /mosquitto/config/mosquitto.conf.
+1737024349: Warning: ACL pattern '/torget' does not contain '%c' or '%u'.
+1737024349: Warning: ACL pattern '/myndigheten' does not contain '%c' or '%u'.
+1737024349: Opening ipv4 listen socket on port 8884.
+1737024349: Opening ipv6 listen socket on port 8884.
+1737024349: Opening ipv4 listen socket on port 8883.
+1737024349: Opening ipv6 listen socket on port 8883.
+1737024349: mosquitto version 2.0.20 running
+1737024358: New connection from 172.18.0.1:48548 on port 8884.
+1737024361: New client connected from 172.18.0.1:48548 as 1 (p2, c1, k120, u'1').
+1737024361: No will message specified.
+1737024361: Sending CONNACK to 1 (0, 0)
+1737024362: Received SUBSCRIBE from 1
+1737024362: 	/torget (QoS 0)
+1737024362: 1 0 /torget
+1737024362: Sending SUBACK to 1
+1737024362: Received SUBSCRIBE from 1
+1737024362: 	/spelare/1/downlink (QoS 0)
+1737024362: 1 0 /spelare/1/downlink
+1737024362: Sending SUBACK to 1
+1737024362: Received SUBSCRIBE from 1
+1737024362: 	/myndigheten (QoS 0)
+1737024362: 1 0 /myndigheten
+1737024362: Sending SUBACK to 1
+1737024423: OpenSSL Error[0]: error:0A000126:SSL routines::unexpected eof while reading
+1737024423: Client 1 closed its connection.
+1737024426: New connection from 172.18.0.1:53278 on port 8884.
+1737024429: New client connected from 172.18.0.1:53278 as 2 (p2, c1, k120, u'2').
+1737024429: No will message specified.
+1737024429: Sending CONNACK to 2 (0, 0)
+1737024429: Received SUBSCRIBE from 2
+1737024429: 	/torget (QoS 0)
+1737024429: 2 0 /torget
+1737024429: Sending SUBACK to 2
+1737024429: Received SUBSCRIBE from 2
+1737024429: 	/spelare/2/downlink (QoS 0)
+1737024429: 2 0 /spelare/2/downlink
+1737024429: Sending SUBACK to 2
+1737024429: Received SUBSCRIBE from 2
+1737024429: 	/myndigheten (QoS 0)
+1737024429: 2 0 /myndigheten
+1737024429: Sending SUBACK to 2
+1737024491: Received PINGREQ from 2
+1737024491: Sending PINGRESP to 2
+1737024551: Received PINGREQ from 2
+1737024551: Sending PINGRESP to 2
+1737024612: Received PINGREQ from 2
+1737024612: Sending PINGRESP to 2
+1737024673: Received PINGREQ from 2
+1737024673: Sending PINGRESP to 2
+1737024682: mosquitto version 2.0.20 terminating
+1737024682: Saving in-memory database to mosquitto.db.
+1737024682: Error saving in-memory database, unable to open mosquitto.db.new for writing.
+1737024682: Error: Permission denied.
+1737024696: mosquitto version 2.0.20 starting
+1737024696: Config loaded from /mosquitto/config/mosquitto.conf.
+1737024696: Warning: ACL pattern '/torget' does not contain '%c' or '%u'.
+1737024696: Warning: ACL pattern '/myndigheten' does not contain '%c' or '%u'.
+1737024696: Opening ipv4 listen socket on port 8884.
+1737024696: Opening ipv6 listen socket on port 8884.
+1737024696: Opening ipv4 listen socket on port 8883.
+1737024696: Opening ipv6 listen socket on port 8883.
+1737024696: mosquitto version 2.0.20 running
+1737024696: New connection from 172.18.0.1:42670 on port 8884.
+1737024696: OpenSSL Error[0]: error:0A000126:SSL routines::unexpected eof while reading
+1737024696: Client <unknown> disconnected: Protocol error.
+1737024698: New connection from 172.18.0.1:42680 on port 8884.
+1737024698: OpenSSL Error[0]: error:0A000126:SSL routines::unexpected eof while reading
+1737024698: Client <unknown> disconnected: Protocol error.
+1737024700: New connection from 172.18.0.1:42690 on port 8884.
+1737024700: OpenSSL Error[0]: error:0A000126:SSL routines::unexpected eof while reading
+1737024700: Client <unknown> disconnected: Protocol error.
+1737024701: mosquitto version 2.0.20 terminating
+1737024701: Saving in-memory database to mosquitto.db.
+1737024701: Error saving in-memory database, unable to open mosquitto.db.new for writing.
+1737024701: Error: Permission denied.
+1737024703: mosquitto version 2.0.20 starting
+1737024703: Config loaded from /mosquitto/config/mosquitto.conf.
+1737024703: Warning: ACL pattern '/torget' does not contain '%c' or '%u'.
+1737024703: Warning: ACL pattern '/myndigheten' does not contain '%c' or '%u'.
+1737024703: Opening ipv4 listen socket on port 8884.
+1737024703: Opening ipv6 listen socket on port 8884.
+1737024703: Opening ipv4 listen socket on port 8883.
+1737024703: Opening ipv6 listen socket on port 8883.
+1737024703: mosquitto version 2.0.20 running
+1737024704: New connection from 172.18.0.1:51422 on port 8884.
+1737024704: OpenSSL Error[0]: error:0A000126:SSL routines::unexpected eof while reading
+1737024704: Client <unknown> disconnected: Protocol error.
+1737024725: New connection from 172.18.0.1:52456 on port 8884.
+1737024728: New client connected from 172.18.0.1:52456 as 1 (p2, c1, k120, u'1').
+1737024728: No will message specified.
+1737024728: Sending CONNACK to 1 (0, 0)
+1737024728: Received SUBSCRIBE from 1
+1737024728: 	/torget (QoS 0)
+1737024728: 1 0 /torget
+1737024728: Sending SUBACK to 1
+1737024728: Received SUBSCRIBE from 1
+1737024728: 	/spelare/1/downlink (QoS 0)
+1737024728: 1 0 /spelare/1/downlink
+1737024728: Sending SUBACK to 1
+1737024729: Received SUBSCRIBE from 1
+1737024729: 	/myndigheten (QoS 0)
+1737024729: 1 0 /myndigheten
+1737024729: Sending SUBACK to 1
+1737024744: OpenSSL Error[0]: error:0A000126:SSL routines::unexpected eof while reading
+1737024744: Client 1 closed its connection.
+1737024764: New connection from 172.18.0.1:57968 on port 8884.
+1737024766: New client connected from 172.18.0.1:57968 as 1 (p2, c1, k120, u'1').
+1737024766: No will message specified.
+1737024766: Sending CONNACK to 1 (0, 0)
+1737024767: Received SUBSCRIBE from 1
+1737024767: 	/torget (QoS 0)
+1737024767: 1 0 /torget
+1737024767: Sending SUBACK to 1
+1737024767: Received SUBSCRIBE from 1
+1737024767: 	/spelare/1/downlink (QoS 0)
+1737024767: 1 0 /spelare/1/downlink
+1737024767: Sending SUBACK to 1
+1737024767: Received SUBSCRIBE from 1
+1737024767: 	/myndigheten (QoS 0)
+1737024767: 1 0 /myndigheten
+1737024767: Sending SUBACK to 1
+1737024827: Received PINGREQ from 1
+1737024827: Sending PINGRESP to 1
+1737024888: Received PINGREQ from 1
+1737024888: Sending PINGRESP to 1
+1737024949: Received PINGREQ from 1
+1737024949: Sending PINGRESP to 1
+1737025010: Received PINGREQ from 1
+1737025010: Sending PINGRESP to 1
+1737025060: mosquitto version 2.0.20 terminating
+1737025060: Saving in-memory database to mosquitto.db.
+1737025060: Error saving in-memory database, unable to open mosquitto.db.new for writing.
+1737025060: Error: Permission denied.
+1737025061: mosquitto version 2.0.20 starting
+1737025061: Config loaded from /mosquitto/config/mosquitto.conf.
+1737025061: Warning: ACL pattern '/torget' does not contain '%c' or '%u'.
+1737025061: Warning: ACL pattern '/myndigheten' does not contain '%c' or '%u'.
+1737025061: Opening ipv4 listen socket on port 8884.
+1737025061: Opening ipv6 listen socket on port 8884.
+1737025061: Opening ipv4 listen socket on port 8883.
+1737025061: Opening ipv6 listen socket on port 8883.
+1737025061: mosquitto version 2.0.20 running
+1737025062: New connection from 172.18.0.1:52154 on port 8884.
+1737025062: OpenSSL Error[0]: error:0A000126:SSL routines::unexpected eof while reading
+1737025062: Client <unknown> disconnected: Protocol error.
+1737025064: New connection from 172.18.0.1:52164 on port 8884.
+1737025064: OpenSSL Error[0]: error:0A000126:SSL routines::unexpected eof while reading
+1737025064: Client <unknown> disconnected: Protocol error.
+1737025066: New connection from 172.18.0.1:52170 on port 8884.
+1737025066: OpenSSL Error[0]: error:0A000126:SSL routines::unexpected eof while reading
+1737025066: Client <unknown> disconnected: Protocol error.
+1737025068: New connection from 172.18.0.1:52174 on port 8884.
+1737025069: OpenSSL Error[0]: error:0A000126:SSL routines::unexpected eof while reading
+1737025069: Client <unknown> disconnected: Protocol error.
+1737025070: New connection from 172.18.0.1:52180 on port 8884.
+1737025070: OpenSSL Error[0]: error:0A000126:SSL routines::unexpected eof while reading
+1737025070: Client <unknown> disconnected: Protocol error.
+1737025094: New connection from 172.18.0.1:46682 on port 8884.
+1737025096: New client connected from 172.18.0.1:46682 as 1 (p2, c1, k120, u'1').
+1737025096: No will message specified.
+1737025096: Sending CONNACK to 1 (0, 0)
+1737025097: Received SUBSCRIBE from 1
+1737025097: 	/torget (QoS 0)
+1737025097: 1 0 /torget
+1737025097: Sending SUBACK to 1
+1737025097: Received SUBSCRIBE from 1
+1737025097: 	/spelare/1/downlink (QoS 0)
+1737025097: 1 0 /spelare/1/downlink
+1737025097: Sending SUBACK to 1
+1737025097: Received SUBSCRIBE from 1
+1737025097: 	/myndigheten (QoS 0)
+1737025097: 1 0 /myndigheten
+1737025097: Sending SUBACK to 1
+1737025153: New connection from 172.18.0.1:43574 on port 8884.
+1737025157: Client 1 already connected, closing old connection.
+1737025157: New client connected from 172.18.0.1:43574 as 1 (p2, c1, k120, u'1').
+1737025157: No will message specified.
+1737025157: Sending CONNACK to 1 (0, 0)
+1737025158: Received SUBSCRIBE from 1
+1737025158: 	/torget (QoS 0)
+1737025158: 1 0 /torget
+1737025158: Sending SUBACK to 1
+1737025158: Received SUBSCRIBE from 1
+1737025158: 	/spelare/1/downlink (QoS 0)
+1737025158: 1 0 /spelare/1/downlink
+1737025158: Sending SUBACK to 1
+1737025158: Received SUBSCRIBE from 1
+1737025158: 	/myndigheten (QoS 0)
+1737025158: 1 0 /myndigheten
+1737025158: Sending SUBACK to 1
+1737025217: Received PINGREQ from 1
+1737025217: Sending PINGRESP to 1
+1737025278: OpenSSL Error[0]: error:0A000126:SSL routines::unexpected eof while reading
+1737025278: Client 1 closed its connection.
+1737025279: New connection from 172.18.0.1:36472 on port 8884.
+1737025280: mosquitto version 2.0.20 terminating
+1737025280: Saving in-memory database to mosquitto.db.
+1737025280: Error saving in-memory database, unable to open mosquitto.db.new for writing.
+1737025280: Error: Permission denied.
+1737025281: mosquitto version 2.0.20 starting
+1737025281: Config loaded from /mosquitto/config/mosquitto.conf.
+1737025281: Warning: ACL pattern '/torget' does not contain '%c' or '%u'.
+1737025281: Warning: ACL pattern '/myndigheten' does not contain '%c' or '%u'.
+1737025281: Opening ipv4 listen socket on port 8884.
+1737025281: Opening ipv6 listen socket on port 8884.
+1737025281: Opening ipv4 listen socket on port 8883.
+1737025281: Opening ipv6 listen socket on port 8883.
+1737025281: mosquitto version 2.0.20 running
+1737025283: New connection from 172.18.0.1:44338 on port 8884.
+1737025295: New connection from 172.18.0.1:43792 on port 8884.
+1737025297: New client connected from 172.18.0.1:43792 as 1 (p2, c1, k120, u'1').
+1737025297: No will message specified.
+1737025297: Sending CONNACK to 1 (0, 0)
+1737025298: Received SUBSCRIBE from 1
+1737025298: 	/torget (QoS 0)
+1737025298: 1 0 /torget
+1737025298: Sending SUBACK to 1
+1737025298: OpenSSL Error[0]: error:0A000126:SSL routines::unexpected eof while reading
+1737025298: Client <unknown> disconnected: Protocol error.
+1737025298: Received SUBSCRIBE from 1
+1737025298: 	/spelare/1/downlink (QoS 0)
+1737025298: 1 0 /spelare/1/downlink
+1737025298: Sending SUBACK to 1
+1737025298: Received SUBSCRIBE from 1
+1737025298: 	/myndigheten (QoS 0)
+1737025298: 1 0 /myndigheten
+1737025298: Sending SUBACK to 1
+1737025358: Received PINGREQ from 1
+1737025358: Sending PINGRESP to 1
+1737025419: Received PINGREQ from 1
+1737025419: Sending PINGRESP to 1
+1737025480: Received PINGREQ from 1
+1737025480: Sending PINGRESP to 1
+1737025553: New connection from 172.18.0.1:36316 on port 8884.
+1737025555: OpenSSL Error[0]: error:0A000126:SSL routines::unexpected eof while reading
+1737025555: Client 1 closed its connection.
+1737025555: New client connected from 172.18.0.1:36316 as 1 (p2, c1, k120, u'1').
+1737025555: No will message specified.
+1737025555: Sending CONNACK to 1 (0, 0)
+1737025556: Received SUBSCRIBE from 1
+1737025556: 	/torget (QoS 0)
+1737025556: 1 0 /torget
+1737025556: Sending SUBACK to 1
+1737025556: Received SUBSCRIBE from 1
+1737025556: 	/spelare/1/downlink (QoS 0)
+1737025556: 1 0 /spelare/1/downlink
+1737025556: Sending SUBACK to 1
+1737025556: Received SUBSCRIBE from 1
+1737025556: 	/myndigheten (QoS 0)
+1737025556: 1 0 /myndigheten
+1737025556: Sending SUBACK to 1
+1737025588: mosquitto version 2.0.20 terminating
+1737025588: Saving in-memory database to mosquitto.db.
+1737025588: Error saving in-memory database, unable to open mosquitto.db.new for writing.
+1737025588: Error: Permission denied.
+1737025590: mosquitto version 2.0.20 starting
+1737025590: Config loaded from /mosquitto/config/mosquitto.conf.
+1737025590: Warning: ACL pattern '/torget' does not contain '%c' or '%u'.
+1737025590: Warning: ACL pattern '/myndigheten' does not contain '%c' or '%u'.
+1737025590: Opening ipv4 listen socket on port 8884.
+1737025590: Opening ipv6 listen socket on port 8884.
+1737025590: Opening ipv4 listen socket on port 8883.
+1737025590: Opening ipv6 listen socket on port 8883.
+1737025590: mosquitto version 2.0.20 running
+1737025592: New connection from 172.18.0.1:33950 on port 8884.
+1737025592: OpenSSL Error[0]: error:0A000126:SSL routines::unexpected eof while reading
+1737025592: Client <unknown> disconnected: Protocol error.
+1737025594: New connection from 172.18.0.1:33954 on port 8884.
+1737025594: OpenSSL Error[0]: error:0A000126:SSL routines::unexpected eof while reading
+1737025594: Client <unknown> disconnected: Protocol error.
+1737025596: New connection from 172.18.0.1:33968 on port 8884.
+1737025596: OpenSSL Error[0]: error:0A000126:SSL routines::unexpected eof while reading
+1737025596: Client <unknown> disconnected: Protocol error.
+1737025598: Client connection from 172.18.0.1 failed: error:0A000126:SSL routines::unexpected eof while reading.
+1737025615: New connection from 172.18.0.1:41000 on port 8884.
+1737025617: New client connected from 172.18.0.1:41000 as 1 (p2, c1, k120, u'1').
+1737025617: No will message specified.
+1737025617: Sending CONNACK to 1 (0, 0)
+1737025618: Received SUBSCRIBE from 1
+1737025618: 	/torget (QoS 0)
+1737025618: 1 0 /torget
+1737025618: Sending SUBACK to 1
+1737025618: Received SUBSCRIBE from 1
+1737025618: 	/spelare/1/downlink (QoS 0)
+1737025618: 1 0 /spelare/1/downlink
+1737025618: Sending SUBACK to 1
+1737025618: Received SUBSCRIBE from 1
+1737025618: 	/myndigheten (QoS 0)
+1737025618: 1 0 /myndigheten
+1737025618: Sending SUBACK to 1
+1737025678: Received PINGREQ from 1
+1737025678: Sending PINGRESP to 1
+1737025739: Received PINGREQ from 1
+1737025739: Sending PINGRESP to 1
+1737025800: Received PINGREQ from 1
+1737025800: Sending PINGRESP to 1
+1737025860: Received PINGREQ from 1
+1737025860: Sending PINGRESP to 1
+1737025921: Received PINGREQ from 1
+1737025921: Sending PINGRESP to 1
+1737025997: OpenSSL Error[0]: error:0A000126:SSL routines::unexpected eof while reading
+1737025997: Client 1 closed its connection.
+1737026001: New connection from 172.18.0.1:59708 on port 8884.
+1737026003: New client connected from 172.18.0.1:59708 as 1 (p2, c1, k120, u'1').
+1737026003: No will message specified.
+1737026003: Sending CONNACK to 1 (0, 0)
+1737026004: Received SUBSCRIBE from 1
+1737026004: 	/torget (QoS 0)
+1737026004: 1 0 /torget
+1737026004: Sending SUBACK to 1
+1737026004: Received SUBSCRIBE from 1
+1737026004: 	/spelare/1/downlink (QoS 0)
+1737026004: 1 0 /spelare/1/downlink
+1737026004: Sending SUBACK to 1
+1737026004: Received SUBSCRIBE from 1
+1737026004: 	/myndigheten (QoS 0)
+1737026004: 1 0 /myndigheten
+1737026004: Sending SUBACK to 1
+1737026064: Received PINGREQ from 1
+1737026064: Sending PINGRESP to 1
+1737026125: Received PINGREQ from 1
+1737026125: Sending PINGRESP to 1
+1737026140: OpenSSL Error[0]: error:0A000126:SSL routines::unexpected eof while reading
+1737026140: Client 1 closed its connection.
+1737026191: New connection from 172.18.0.1:44310 on port 8884.
+1737026195: New client connected from 172.18.0.1:44310 as 1 (p2, c1, k120, u'1').
+1737026195: No will message specified.
+1737026195: Sending CONNACK to 1 (0, 0)
+1737026195: Received SUBSCRIBE from 1
+1737026195: 	/torget (QoS 0)
+1737026195: 1 0 /torget
+1737026195: Sending SUBACK to 1
+1737026195: Received SUBSCRIBE from 1
+1737026195: 	/spelare/1/downlink (QoS 0)
+1737026195: 1 0 /spelare/1/downlink
+1737026195: Sending SUBACK to 1
+1737026196: Received SUBSCRIBE from 1
+1737026196: 	/myndigheten (QoS 0)
+1737026196: 1 0 /myndigheten
+1737026196: Sending SUBACK to 1
+1737026255: mosquitto version 2.0.20 terminating
+1737026255: Saving in-memory database to mosquitto.db.
+1737026255: Error saving in-memory database, unable to open mosquitto.db.new for writing.
+1737026255: Error: Permission denied.
+1737026256: mosquitto version 2.0.20 starting
+1737026256: Config loaded from /mosquitto/config/mosquitto.conf.
+1737026256: Warning: ACL pattern '/torget' does not contain '%c' or '%u'.
+1737026256: Warning: ACL pattern '/myndigheten' does not contain '%c' or '%u'.
+1737026256: Opening ipv4 listen socket on port 8884.
+1737026256: Opening ipv6 listen socket on port 8884.
+1737026256: Opening ipv4 listen socket on port 8883.
+1737026256: Opening ipv6 listen socket on port 8883.
+1737026256: mosquitto version 2.0.20 running
+1737026294: New connection from 172.18.0.1:54166 on port 8884.
+1737026297: New client connected from 172.18.0.1:54166 as 1 (p2, c1, k120, u'1').
+1737026297: No will message specified.
+1737026297: Sending CONNACK to 1 (0, 0)
+1737026297: Received SUBSCRIBE from 1
+1737026297: 	/torget (QoS 0)
+1737026297: 1 0 /torget
+1737026297: Sending SUBACK to 1
+1737026297: Received SUBSCRIBE from 1
+1737026297: 	/spelare/1/downlink (QoS 0)
+1737026297: 1 0 /spelare/1/downlink
+1737026297: Sending SUBACK to 1
+1737026298: Received SUBSCRIBE from 1
+1737026298: 	/myndigheten (QoS 0)
+1737026298: 1 0 /myndigheten
+1737026298: Sending SUBACK to 1
+1737026357: Received PINGREQ from 1
+1737026357: Sending PINGRESP to 1
+1737026448: OpenSSL Error[0]: error:0A000126:SSL routines::unexpected eof while reading
+1737026448: Client 1 closed its connection.
+1737026452: New connection from 172.18.0.1:52900 on port 8884.
+1737026454: New client connected from 172.18.0.1:52900 as 1 (p2, c1, k120, u'1').
+1737026454: No will message specified.
+1737026454: Sending CONNACK to 1 (0, 0)
+1737026455: Received SUBSCRIBE from 1
+1737026455: 	/torget (QoS 0)
+1737026455: 1 0 /torget
+1737026455: Sending SUBACK to 1
+1737026455: Received SUBSCRIBE from 1
+1737026455: 	/spelare/1/downlink (QoS 0)
+1737026455: 1 0 /spelare/1/downlink
+1737026455: Sending SUBACK to 1
+1737026455: Received SUBSCRIBE from 1
+1737026455: 	/myndigheten (QoS 0)
+1737026455: 1 0 /myndigheten
+1737026455: Sending SUBACK to 1
+1737026515: Received PINGREQ from 1
+1737026515: Sending PINGRESP to 1
+1737026577: OpenSSL Error[0]: error:0A000126:SSL routines::unexpected eof while reading
+1737026577: Client 1 closed its connection.
+1737026581: New connection from 172.18.0.1:34274 on port 8884.
+1737026583: New client connected from 172.18.0.1:34274 as 1 (p2, c1, k120, u'1').
+1737026583: No will message specified.
+1737026583: Sending CONNACK to 1 (0, 0)
+1737026584: Received SUBSCRIBE from 1
+1737026584: 	/torget (QoS 0)
+1737026584: 1 0 /torget
+1737026584: Sending SUBACK to 1
+1737026584: Received SUBSCRIBE from 1
+1737026584: 	/spelare/1/downlink (QoS 0)
+1737026584: 1 0 /spelare/1/downlink
+1737026584: Sending SUBACK to 1
+1737026584: Received SUBSCRIBE from 1
+1737026584: 	/myndigheten (QoS 0)
+1737026584: 1 0 /myndigheten
+1737026584: Sending SUBACK to 1
+1737026644: Received PINGREQ from 1
+1737026644: Sending PINGRESP to 1
+1737026705: OpenSSL Error[0]: error:0A000126:SSL routines::unexpected eof while reading
+1737026705: Client 1 closed its connection.
+1737026714: New connection from 172.18.0.1:51604 on port 8884.
+1737026716: New client connected from 172.18.0.1:51604 as 1 (p2, c1, k120, u'1').
+1737026716: No will message specified.
+1737026716: Sending CONNACK to 1 (0, 0)
+1737026761: OpenSSL Error[0]: error:0A000126:SSL routines::unexpected eof while reading
+1737026761: Client 1 closed its connection.
+1737026765: New connection from 172.18.0.1:42990 on port 8884.
+1737026767: New client connected from 172.18.0.1:42990 as 1 (p2, c1, k120, u'1').
+1737026767: No will message specified.
+1737026767: Sending CONNACK to 1 (0, 0)
+1737026768: Received SUBSCRIBE from 1
+1737026768: 	/torget (QoS 0)
+1737026768: 1 0 /torget
+1737026768: Sending SUBACK to 1
+1737026768: Received SUBSCRIBE from 1
+1737026768: 	/spelare/1/downlink (QoS 0)
+1737026768: 1 0 /spelare/1/downlink
+1737026768: Sending SUBACK to 1
+1737026769: Received SUBSCRIBE from 1
+1737026769: 	/myndigheten (QoS 0)
+1737026769: 1 0 /myndigheten
+1737026769: Sending SUBACK to 1
+1737026829: Received PINGREQ from 1
+1737026829: Sending PINGRESP to 1
+1737026934: OpenSSL Error[0]: error:0A000126:SSL routines::unexpected eof while reading
+1737026934: Client 1 closed its connection.
+1737026939: New connection from 172.18.0.1:51206 on port 8884.
+1737026941: New client connected from 172.18.0.1:51206 as 1 (p2, c1, k120, u'1').
+1737026941: No will message specified.
+1737026941: Sending CONNACK to 1 (0, 0)
+1737026942: Received SUBSCRIBE from 1
+1737026942: 	/torget (QoS 0)
+1737026942: 1 0 /torget
+1737026942: Sending SUBACK to 1
+1737026942: Received SUBSCRIBE from 1
+1737026942: 	/spelare/1/downlink (QoS 0)
+1737026942: 1 0 /spelare/1/downlink
+1737026942: Sending SUBACK to 1
+1737026942: Received SUBSCRIBE from 1
+1737026942: 	/myndigheten (QoS 0)
+1737026942: 1 0 /myndigheten
+1737026942: Sending SUBACK to 1
+1737027002: Received PINGREQ from 1
+1737027002: Sending PINGRESP to 1
+1737027093: OpenSSL Error[0]: error:0A000126:SSL routines::unexpected eof while reading
+1737027093: Client 1 closed its connection.
+1737027107: New connection from 172.18.0.1:60966 on port 8884.
+1737027110: New client connected from 172.18.0.1:60966 as 1 (p2, c1, k120, u'1').
+1737027110: No will message specified.
+1737027110: Sending CONNACK to 1 (0, 0)
+1737027110: Received SUBSCRIBE from 1
+1737027110: 	/torget (QoS 0)
+1737027110: 1 0 /torget
+1737027110: Sending SUBACK to 1
+1737027110: Received SUBSCRIBE from 1
+1737027110: 	/spelare/1/downlink (QoS 0)
+1737027110: 1 0 /spelare/1/downlink
+1737027110: Sending SUBACK to 1
+1737027111: Received SUBSCRIBE from 1
+1737027111: 	/myndigheten (QoS 0)
+1737027111: 1 0 /myndigheten
+1737027111: Sending SUBACK to 1
+1737027170: Received PINGREQ from 1
+1737027170: Sending PINGRESP to 1
+1737027214: New connection from 172.18.0.1:48330 on port 8884.
+1737027216: OpenSSL Error[0]: error:0A000126:SSL routines::unexpected eof while reading
+1737027216: Client 1 closed its connection.
+1737027216: New client connected from 172.18.0.1:48330 as 1 (p2, c1, k120, u'1').
+1737027216: No will message specified.
+1737027216: Sending CONNACK to 1 (0, 0)
+1737027259: New connection from 172.18.0.1:36936 on port 8884.
+1737027262: OpenSSL Error[0]: error:0A000126:SSL routines::unexpected eof while reading
+1737027262: Client 1 closed its connection.
+1737027263: New client connected from 172.18.0.1:36936 as 1 (p2, c1, k120, u'1').
+1737027263: No will message specified.
+1737027263: Sending CONNACK to 1 (0, 0)
+1737027264: Received SUBSCRIBE from 1
+1737027264: 	/torget (QoS 0)
+1737027264: 1 0 /torget
+1737027264: Sending SUBACK to 1
+1737027264: Received SUBSCRIBE from 1
+1737027264: 	/spelare/1/downlink (QoS 0)
+1737027264: 1 0 /spelare/1/downlink
+1737027264: Sending SUBACK to 1
+1737027264: Received SUBSCRIBE from 1
+1737027264: 	/myndigheten (QoS 0)
+1737027264: 1 0 /myndigheten
+1737027264: Sending SUBACK to 1
+1737027338: New connection from 172.18.0.1:52158 on port 8884.
+1737027340: OpenSSL Error[0]: error:0A000126:SSL routines::unexpected eof while reading
+1737027340: Client 1 closed its connection.
+1737027340: New client connected from 172.18.0.1:52158 as 1 (p2, c1, k120, u'1').
+1737027340: No will message specified.
+1737027340: Sending CONNACK to 1 (0, 0)
+1737027341: Received SUBSCRIBE from 1
+1737027341: 	/torget (QoS 0)
+1737027341: 1 0 /torget
+1737027341: Sending SUBACK to 1
+1737027341: Received SUBSCRIBE from 1
+1737027341: 	/spelare/1/downlink (QoS 0)
+1737027341: 1 0 /spelare/1/downlink
+1737027341: Sending SUBACK to 1
+1737027341: Received SUBSCRIBE from 1
+1737027341: 	/myndigheten (QoS 0)
+1737027341: 1 0 /myndigheten
+1737027341: Sending SUBACK to 1
+1737027401: Received PINGREQ from 1
+1737027401: Sending PINGRESP to 1
+1737027462: Received PINGREQ from 1
+1737027462: Sending PINGRESP to 1
+1737027537: OpenSSL Error[0]: error:0A000126:SSL routines::unexpected eof while reading
+1737027537: Client 1 closed its connection.
+1737027544: New connection from 172.18.0.1:43136 on port 8884.
+1737027547: New client connected from 172.18.0.1:43136 as 1 (p2, c1, k120, u'1').
+1737027547: No will message specified.
+1737027547: Sending CONNACK to 1 (0, 0)
+1737027547: Received SUBSCRIBE from 1
+1737027547: 	/torget (QoS 0)
+1737027547: 1 0 /torget
+1737027547: Sending SUBACK to 1
+1737027547: Received SUBSCRIBE from 1
+1737027547: 	/spelare/1/downlink (QoS 0)
+1737027547: 1 0 /spelare/1/downlink
+1737027547: Sending SUBACK to 1
+1737027548: Received SUBSCRIBE from 1
+1737027548: 	/myndigheten (QoS 0)
+1737027548: 1 0 /myndigheten
+1737027548: Sending SUBACK to 1
+1737027563: OpenSSL Error[0]: error:0A000126:SSL routines::unexpected eof while reading
+1737027563: Client 1 closed its connection.
+1737027574: New connection from 172.18.0.1:33856 on port 8884.
+1737027577: New client connected from 172.18.0.1:33856 as 1 (p2, c1, k120, u'1').
+1737027577: No will message specified.
+1737027577: Sending CONNACK to 1 (0, 0)
+1737027577: Received SUBSCRIBE from 1
+1737027577: 	/torget (QoS 0)
+1737027577: 1 0 /torget
+1737027577: Sending SUBACK to 1
+1737027577: Received SUBSCRIBE from 1
+1737027577: 	/spelare/1/downlink (QoS 0)
+1737027577: 1 0 /spelare/1/downlink
+1737027577: Sending SUBACK to 1
+1737027578: Received SUBSCRIBE from 1
+1737027578: 	/myndigheten (QoS 0)
+1737027578: 1 0 /myndigheten
+1737027578: Sending SUBACK to 1
+1737027591: Received PUBLISH from 1 (d0, q0, r0, m0, '/torget', ... (43 bytes))
+1737027591: Sending PUBLISH to 1 (d0, q0, r0, m0, '/torget', ... (43 bytes))
+1737027604: New connection from 172.18.0.1:36152 on port 8884.
+1737027606: OpenSSL Error[0]: error:0A000126:SSL routines::unexpected eof while reading
+1737027606: Client 1 closed its connection.
+1737027607: New client connected from 172.18.0.1:36152 as 1 (p2, c1, k120, u'1').
+1737027607: No will message specified.
+1737027607: Sending CONNACK to 1 (0, 0)
+1737027607: Received SUBSCRIBE from 1
+1737027607: 	/torget (QoS 0)
+1737027607: 1 0 /torget
+1737027607: Sending SUBACK to 1
+1737027607: Received SUBSCRIBE from 1
+1737027607: 	/spelare/1/downlink (QoS 0)
+1737027607: 1 0 /spelare/1/downlink
+1737027607: Sending SUBACK to 1
+1737027608: Received SUBSCRIBE from 1
+1737027608: 	/myndigheten (QoS 0)
+1737027608: 1 0 /myndigheten
+1737027608: Sending SUBACK to 1
+1737027667: Received PINGREQ from 1
+1737027667: Sending PINGRESP to 1
+1737027678: Received PUBLISH from 1 (d0, q0, r0, m0, '/torget', ... (42 bytes))
+1737027678: Sending PUBLISH to 1 (d0, q0, r0, m0, '/torget', ... (42 bytes))
+1737027693: OpenSSL Error[0]: error:0A000126:SSL routines::unexpected eof while reading
+1737027693: Client 1 closed its connection.
+1737027696: New connection from 172.18.0.1:50660 on port 8884.
+1737027698: New client connected from 172.18.0.1:50660 as 1 (p2, c1, k120, u'1').
+1737027698: No will message specified.
+1737027698: Sending CONNACK to 1 (0, 0)
+1737027698: Received SUBSCRIBE from 1
+1737027698: 	/torget (QoS 0)
+1737027698: 1 0 /torget
+1737027698: Sending SUBACK to 1
+1737027699: Received SUBSCRIBE from 1
+1737027699: 	/spelare/1/downlink (QoS 0)
+1737027699: 1 0 /spelare/1/downlink
+1737027699: Sending SUBACK to 1
+1737027700: Received SUBSCRIBE from 1
+1737027700: 	/myndigheten (QoS 0)
+1737027700: 1 0 /myndigheten
+1737027700: Sending SUBACK to 1
+1737027700: Received SUBSCRIBE from 1
+1737027700: 	/myndigheten (QoS 0)
+1737027700: 1 0 /myndigheten
+1737027700: Sending SUBACK to 1
+1737027759: Received PINGREQ from 1
+1737027759: Sending PINGRESP to 1
+1737556872: mosquitto version 2.0.20 starting
+1737556872: Config loaded from /mosquitto/config/mosquitto.conf.
+1737556872: Warning: ACL pattern '/torget' does not contain '%c' or '%u'.
+1737556872: Warning: ACL pattern '/myndigheten' does not contain '%c' or '%u'.
+1737556872: Opening ipv4 listen socket on port 8884.
+1737556872: Opening ipv6 listen socket on port 8884.
+1737556872: Opening ipv4 listen socket on port 8883.
+1737556872: Opening ipv6 listen socket on port 8883.
+1737556872: mosquitto version 2.0.20 running
+1737557019: New connection from 172.18.0.1:54982 on port 8884.
+1737557021: New client connected from 172.18.0.1:54982 as 1 (p2, c1, k120, u'1').
+1737557021: No will message specified.
+1737557021: Sending CONNACK to 1 (0, 0)
+1737557022: Received SUBSCRIBE from 1
+1737557022: 	/torget (QoS 0)
+1737557022: 1 0 /torget
+1737557022: Sending SUBACK to 1
+1737557022: Received SUBSCRIBE from 1
+1737557022: 	/spelare/1/downlink (QoS 0)
+1737557022: 1 0 /spelare/1/downlink
+1737557022: Sending SUBACK to 1
+1737557022: Received SUBSCRIBE from 1
+1737557022: 	/myndigheten (QoS 0)
+1737557022: 1 0 /myndigheten
+1737557022: Sending SUBACK to 1
+1737557063: New connection from 172.18.0.1:52838 on port 8884.
+1737557065: Client 1 already connected, closing old connection.
+1737557065: New client connected from 172.18.0.1:52838 as 1 (p2, c1, k120, u'1').
+1737557065: No will message specified.
+1737557065: Sending CONNACK to 1 (0, 0)
+1737557066: Received SUBSCRIBE from 1
+1737557066: 	/torget (QoS 0)
+1737557066: 1 0 /torget
+1737557066: Sending SUBACK to 1
+1737557066: Received SUBSCRIBE from 1
+1737557066: 	/spelare/1/downlink (QoS 0)
+1737557066: 1 0 /spelare/1/downlink
+1737557066: Sending SUBACK to 1
+1737557066: Received SUBSCRIBE from 1
+1737557066: 	/myndigheten (QoS 0)
+1737557066: 1 0 /myndigheten
+1737557066: Sending SUBACK to 1
+1737557126: Received PINGREQ from 1
+1737557126: Sending PINGRESP to 1
+1737557187: Received PINGREQ from 1
+1737557187: Sending PINGRESP to 1
+1737557248: Received PINGREQ from 1
+1737557248: Sending PINGRESP to 1
+1737557308: Received PINGREQ from 1
+1737557308: Sending PINGRESP to 1
+1737557369: Received PINGREQ from 1
+1737557369: Sending PINGRESP to 1
+1737557430: Received PINGREQ from 1
+1737557430: Sending PINGRESP to 1
+1737557491: Received PINGREQ from 1
+1737557491: Sending PINGRESP to 1
+1737557551: Received PINGREQ from 1
+1737557551: Sending PINGRESP to 1
+1737557612: Received PINGREQ from 1
+1737557612: Sending PINGRESP to 1
+1737557673: Received PINGREQ from 1
+1737557673: Sending PINGRESP to 1
+1737557734: Received PINGREQ from 1
+1737557734: Sending PINGRESP to 1
+1737557794: Received PINGREQ from 1
+1737557794: Sending PINGRESP to 1
+1737557855: Received PINGREQ from 1
+1737557855: Sending PINGRESP to 1
+1737557916: Received PINGREQ from 1
+1737557916: Sending PINGRESP to 1
+1737557977: Received PINGREQ from 1
+1737557977: Sending PINGRESP to 1
+1737558037: Received PINGREQ from 1
+1737558037: Sending PINGRESP to 1
+1737558098: Received PINGREQ from 1
+1737558098: Sending PINGRESP to 1
+1737558159: Received PINGREQ from 1
+1737558159: Sending PINGRESP to 1
+1737558220: Received PINGREQ from 1
+1737558220: Sending PINGRESP to 1
+1737558280: Received PINGREQ from 1
+1737558280: Sending PINGRESP to 1
+1737558341: Received PINGREQ from 1
+1737558341: Sending PINGRESP to 1
+1737558402: OpenSSL Error[0]: error:0A000126:SSL routines::unexpected eof while reading
+1737558402: Client 1 closed its connection.
+1737558409: New connection from 172.18.0.1:33454 on port 8884.
+1737558412: New client connected from 172.18.0.1:33454 as 1 (p2, c1, k120, u'1').
+1737558412: No will message specified.
+1737558412: Sending CONNACK to 1 (0, 0)
+1737558412: Received SUBSCRIBE from 1
+1737558412: 	/torget (QoS 0)
+1737558412: 1 0 /torget
+1737558412: Sending SUBACK to 1
+1737558412: Received SUBSCRIBE from 1
+1737558412: 	/spelare/1/downlink (QoS 0)
+1737558412: 1 0 /spelare/1/downlink
+1737558412: Sending SUBACK to 1
+1737558412: Received SUBSCRIBE from 1
+1737558412: 	/myndigheten (QoS 0)
+1737558412: 1 0 /myndigheten
+1737558412: Sending SUBACK to 1
+1737558427: New connection from 172.18.0.1:47178 on port 8884.
+1737558428: OpenSSL Error[0]: error:0A000126:SSL routines::unexpected eof while reading
+1737558428: Client 1 closed its connection.
+1737558430: New client connected from 172.18.0.1:47178 as 1 (p2, c1, k120, u'1').
+1737558430: No will message specified.
+1737558430: Sending CONNACK to 1 (0, 0)
+1737558430: Received SUBSCRIBE from 1
+1737558430: 	/torget (QoS 0)
+1737558430: 1 0 /torget
+1737558430: Sending SUBACK to 1
+1737558430: Received SUBSCRIBE from 1
+1737558430: 	/spelare/1/downlink (QoS 0)
+1737558430: 1 0 /spelare/1/downlink
+1737558430: Sending SUBACK to 1
+1737558431: Received SUBSCRIBE from 1
+1737558431: 	/myndigheten (QoS 0)
+1737558431: 1 0 /myndigheten
+1737558431: Sending SUBACK to 1
+1737558455: Received PUBLISH from 1 (d0, q0, r0, m0, '/torget', ... (45 bytes))
+1737558455: Sending PUBLISH to 1 (d0, q0, r0, m0, '/torget', ... (45 bytes))
+1737558491: Received PINGREQ from 1
+1737558491: Sending PINGRESP to 1
+1737558552: Received PINGREQ from 1
+1737558552: Sending PINGRESP to 1
+1737558612: Received PINGREQ from 1
+1737558612: Sending PINGRESP to 1
+1737558673: Saving in-memory database to mosquitto.db.
+1737558673: Error saving in-memory database, unable to open mosquitto.db.new for writing.
+1737558673: Error: Permission denied.
+1737558673: Received PINGREQ from 1
+1737558673: Sending PINGRESP to 1
+1737558734: OpenSSL Error[0]: error:0A000126:SSL routines::unexpected eof while reading
+1737558734: Client 1 closed its connection.
+1737558749: New connection from 172.18.0.1:45082 on port 8884.
+1737558781: OpenSSL Error[0]: error:0A000126:SSL routines::unexpected eof while reading
+1737558781: Client <unknown> disconnected: Protocol error.
+1737558785: New connection from 172.18.0.1:44280 on port 8884.
+1737558787: New client connected from 172.18.0.1:44280 as 1 (p2, c1, k120, u'1').
+1737558787: No will message specified.
+1737558787: Sending CONNACK to 1 (0, 0)
+1737558788: Received SUBSCRIBE from 1
+1737558788: 	/torget (QoS 0)
+1737558788: 1 0 /torget
+1737558788: Sending SUBACK to 1
+1737558788: Received SUBSCRIBE from 1
+1737558788: 	/spelare/1/downlink (QoS 0)
+1737558788: 1 0 /spelare/1/downlink
+1737558788: Sending SUBACK to 1
+1737558788: Received SUBSCRIBE from 1
+1737558788: 	/myndigheten (QoS 0)
+1737558788: 1 0 /myndigheten
+1737558788: Sending SUBACK to 1
+1737558848: Received PINGREQ from 1
+1737558848: Sending PINGRESP to 1
+1737558909: Received PINGREQ from 1
+1737558909: Sending PINGRESP to 1
+1737558970: Received PINGREQ from 1
+1737558970: Sending PINGRESP to 1
+1737559000: OpenSSL Error[0]: error:0A000126:SSL routines::unexpected eof while reading
+1737559000: Client 1 closed its connection.
+1737559004: mosquitto version 2.0.20 terminating
+1737559004: Saving in-memory database to mosquitto.db.
+1737559004: Error saving in-memory database, unable to open mosquitto.db.new for writing.
+1737559004: Error: Permission denied.
+1737559006: mosquitto version 2.0.20 starting
+1737559006: Config loaded from /mosquitto/config/mosquitto.conf.
+1737559006: Warning: ACL pattern '/torget' does not contain '%c' or '%u'.
+1737559006: Warning: ACL pattern '/myndigheten' does not contain '%c' or '%u'.
+1737559006: Opening ipv4 listen socket on port 8884.
+1737559006: Opening ipv6 listen socket on port 8884.
+1737559006: Opening ipv4 listen socket on port 8883.
+1737559006: Opening ipv6 listen socket on port 8883.
+1737559006: mosquitto version 2.0.20 running
+1737559019: New connection from 172.18.0.1:51304 on port 8884.
+1737559021: New client connected from 172.18.0.1:51304 as 1 (p2, c1, k120, u'1').
+1737559021: No will message specified.
+1737559021: Sending CONNACK to 1 (0, 0)
+1737559022: Received SUBSCRIBE from 1
+1737559022: 	/torget (QoS 0)
+1737559022: 1 0 /torget
+1737559022: Sending SUBACK to 1
+1737559022: Received SUBSCRIBE from 1
+1737559022: 	/spelare/1/downlink (QoS 0)
+1737559022: 1 0 /spelare/1/downlink
+1737559022: Sending SUBACK to 1
+1737559022: Received SUBSCRIBE from 1
+1737559022: 	/myndigheten (QoS 0)
+1737559022: 1 0 /myndigheten
+1737559022: Sending SUBACK to 1
+1737559041: Received PUBLISH from 1 (d0, q0, r0, m0, '/torget', ... (45 bytes))
+1737559041: Sending PUBLISH to 1 (d0, q0, r0, m0, '/torget', ... (45 bytes))
+1737559083: Received PINGREQ from 1
+1737559083: Sending PINGRESP to 1
+1737559143: Received PINGREQ from 1
+1737559143: Sending PINGRESP to 1
+1737559204: Received PINGREQ from 1
+1737559204: Sending PINGRESP to 1
+1737559265: Received PINGREQ from 1
+1737559265: Sending PINGRESP to 1
+1737559326: Received PINGREQ from 1
+1737559326: Sending PINGRESP to 1
+1737559386: Received PINGREQ from 1
+1737559386: Sending PINGRESP to 1
+1737559447: Received PINGREQ from 1
+1737559447: Sending PINGRESP to 1
+1737559508: Received PINGREQ from 1
+1737559508: Sending PINGRESP to 1
+1737559569: Received PINGREQ from 1
+1737559569: Sending PINGRESP to 1
+1737559629: Received PINGREQ from 1
+1737559629: Sending PINGRESP to 1
+1737559690: Received PINGREQ from 1
+1737559690: Sending PINGRESP to 1
+1737559751: Received PINGREQ from 1
+1737559751: Sending PINGRESP to 1
+1737559811: OpenSSL Error[0]: error:0A000126:SSL routines::unexpected eof while reading
+1737559811: Client 1 closed its connection.
+1737559903: New connection from 172.18.0.1:50378 on port 8884.
+1737559906: New client connected from 172.18.0.1:50378 as 1 (p2, c1, k120, u'1').
+1737559906: No will message specified.
+1737559906: Sending CONNACK to 1 (0, 0)
+1737559906: Received SUBSCRIBE from 1
+1737559906: 	/torget (QoS 0)
+1737559906: 1 0 /torget
+1737559906: Sending SUBACK to 1
+1737559906: Received SUBSCRIBE from 1
+1737559906: 	/spelare/1/downlink (QoS 0)
+1737559906: 1 0 /spelare/1/downlink
+1737559906: Sending SUBACK to 1
+1737559907: Received SUBSCRIBE from 1
+1737559907: 	/myndigheten (QoS 0)
+1737559907: 1 0 /myndigheten
+1737559907: Sending SUBACK to 1
+1737559966: Received PINGREQ from 1
+1737559966: Sending PINGRESP to 1
+1737560027: Received PINGREQ from 1
+1737560027: Sending PINGRESP to 1
+1737560088: Received PINGREQ from 1
+1737560088: Sending PINGRESP to 1
+1737560149: Received PINGREQ from 1
+1737560149: Sending PINGRESP to 1
+1737560209: Received PINGREQ from 1
+1737560209: Sending PINGRESP to 1
+1737560270: Received PINGREQ from 1
+1737560270: Sending PINGRESP to 1
+1737560331: Received PINGREQ from 1
+1737560331: Sending PINGRESP to 1
+1737560392: Received PINGREQ from 1
+1737560392: Sending PINGRESP to 1
+1737560452: Received PINGREQ from 1
+1737560452: Sending PINGRESP to 1
+1737560484: mosquitto version 2.0.20 terminating
+1737560484: Saving in-memory database to mosquitto.db.
+1737560484: Error saving in-memory database, unable to open mosquitto.db.new for writing.
+1737560484: Error: Permission denied.
+1737589392: mosquitto version 2.0.20 starting
+1737589392: Config loaded from /mosquitto/config/mosquitto.conf.
+1737589392: Warning: ACL pattern '/torget' does not contain '%c' or '%u'.
+1737589392: Warning: ACL pattern '/myndigheten' does not contain '%c' or '%u'.
+1737589392: Opening ipv4 listen socket on port 8884.
+1737589392: Opening ipv6 listen socket on port 8884.
+1737589392: Opening ipv4 listen socket on port 8883.
+1737589392: Opening ipv6 listen socket on port 8883.
+1737589392: mosquitto version 2.0.20 running
+1737589612: New connection from 172.18.0.1:47268 on port 8884.
+1737589615: New client connected from 172.18.0.1:47268 as 1 (p2, c1, k120, u'1').
+1737589615: No will message specified.
+1737589615: Sending CONNACK to 1 (0, 0)
+1737589615: Received SUBSCRIBE from 1
+1737589615: 	/torget (QoS 0)
+1737589615: 1 0 /torget
+1737589615: Sending SUBACK to 1
+1737589615: Received SUBSCRIBE from 1
+1737589615: 	/spelare/1/downlink (QoS 0)
+1737589615: 1 0 /spelare/1/downlink
+1737589615: Sending SUBACK to 1
+1737589616: Received SUBSCRIBE from 1
+1737589616: 	/myndigheten (QoS 0)
+1737589616: 1 0 /myndigheten
+1737589616: Sending SUBACK to 1
+1737589675: Received PINGREQ from 1
+1737589675: Sending PINGRESP to 1
+1737589716: New connection from 172.18.0.1:58142 on port 8884.
+1737589719: Client 1 already connected, closing old connection.
+1737589719: New client connected from 172.18.0.1:58142 as 1 (p2, c1, k120, u'1').
+1737589719: No will message specified.
+1737589719: Sending CONNACK to 1 (0, 0)
+1737589719: Received SUBSCRIBE from 1
+1737589719: 	/torget (QoS 0)
+1737589719: 1 0 /torget
+1737589719: Sending SUBACK to 1
+1737589719: Received SUBSCRIBE from 1
+1737589719: 	/spelare/1/downlink (QoS 0)
+1737589719: 1 0 /spelare/1/downlink
+1737589719: Sending SUBACK to 1
+1737589720: Received SUBSCRIBE from 1
+1737589720: 	/myndigheten (QoS 0)
+1737589720: 1 0 /myndigheten
+1737589720: Sending SUBACK to 1
+1737589780: New connection from 172.18.0.1:36128 on port 8884.
+1737589780: OpenSSL Error[0]: error:0A000126:SSL routines::unexpected eof while reading
+1737589780: Client 1 closed its connection.
+1737589782: New client connected from 172.18.0.1:36128 as 1 (p2, c1, k120, u'1').
+1737589782: No will message specified.
+1737589782: Sending CONNACK to 1 (0, 0)
+1737589783: Received SUBSCRIBE from 1
+1737589783: 	/torget (QoS 0)
+1737589783: 1 0 /torget
+1737589783: Sending SUBACK to 1
+1737589783: Received SUBSCRIBE from 1
+1737589783: 	/spelare/1/downlink (QoS 0)
+1737589783: 1 0 /spelare/1/downlink
+1737589783: Sending SUBACK to 1
+1737589783: Received SUBSCRIBE from 1
+1737589783: 	/myndigheten (QoS 0)
+1737589783: 1 0 /myndigheten
+1737589783: Sending SUBACK to 1
+1737589843: Received PINGREQ from 1
+1737589843: Sending PINGRESP to 1
+1737589891: mosquitto version 2.0.20 terminating
+1737589891: Saving in-memory database to mosquitto.db.
+1737589891: Error saving in-memory database, unable to open mosquitto.db.new for writing.
+1737589891: Error: Permission denied.
+1737589901: mosquitto version 2.0.20 starting
+1737589901: Config loaded from /mosquitto/config/mosquitto.conf.
+1737589901: Warning: ACL pattern '/torget' does not contain '%c' or '%u'.
+1737589901: Warning: ACL pattern '/myndigheten' does not contain '%c' or '%u'.
+1737589901: Opening ipv4 listen socket on port 8884.
+1737589901: Opening ipv6 listen socket on port 8884.
+1737589901: Opening ipv4 listen socket on port 8883.
+1737589901: Opening ipv6 listen socket on port 8883.
+1737589901: mosquitto version 2.0.20 running
+1737589919: New connection from 172.18.0.1:58778 on port 8884.
+1737589920: New client connected from 172.18.0.1:58778 as 1 (p2, c1, k120, u'1').
+1737589920: No will message specified.
+1737589920: Sending CONNACK to 1 (0, 0)
+1737589920: Received SUBSCRIBE from 1
+1737589920: 	/torget (QoS 0)
+1737589920: 1 0 /torget
+1737589920: Sending SUBACK to 1
+1737589920: Received SUBSCRIBE from 1
+1737589920: 	/spelare/1/downlink (QoS 0)
+1737589920: 1 0 /spelare/1/downlink
+1737589920: Sending SUBACK to 1
+1737589920: Received SUBSCRIBE from 1
+1737589920: 	/myndigheten (QoS 0)
+1737589920: 1 0 /myndigheten
+1737589920: Sending SUBACK to 1
+1737589981: Received PINGREQ from 1
+1737589981: Sending PINGRESP to 1
+1737590066: New connection from 172.18.0.1:49300 on port 8884.
+1737590068: Client 1 already connected, closing old connection.
+1737590068: New client connected from 172.18.0.1:49300 as 1 (p2, c1, k120, u'1').
+1737590068: No will message specified.
+1737590068: Sending CONNACK to 1 (0, 0)
+1737590068: Received SUBSCRIBE from 1
+1737590068: 	/torget (QoS 0)
+1737590068: 1 0 /torget
+1737590068: Sending SUBACK to 1
+1737590068: Received SUBSCRIBE from 1
+1737590068: 	/spelare/1/downlink (QoS 0)
+1737590068: 1 0 /spelare/1/downlink
+1737590068: Sending SUBACK to 1
+1737590068: Received SUBSCRIBE from 1
+1737590068: 	/myndigheten (QoS 0)
+1737590068: 1 0 /myndigheten
+1737590068: Sending SUBACK to 1
+1737590128: Received PINGREQ from 1
+1737590128: Sending PINGRESP to 1
+1737590189: Received PINGREQ from 1
+1737590189: Sending PINGRESP to 1
+1737590249: Received PINGREQ from 1
+1737590249: Sending PINGRESP to 1
+1737590310: Received PINGREQ from 1
+1737590310: Sending PINGRESP to 1
+1737590385: OpenSSL Error[0]: error:0A000126:SSL routines::unexpected eof while reading
+1737590385: Client 1 closed its connection.
+1737590387: New connection from 172.18.0.1:34048 on port 8884.
+1737590388: New client connected from 172.18.0.1:34048 as 1 (p2, c1, k120, u'1').
+1737590388: No will message specified.
+1737590388: Sending CONNACK to 1 (0, 0)
+1737590388: Received SUBSCRIBE from 1
+1737590388: 	/torget (QoS 0)
+1737590388: 1 0 /torget
+1737590388: Sending SUBACK to 1
+1737590388: Received SUBSCRIBE from 1
+1737590388: 	/spelare/1/downlink (QoS 0)
+1737590388: 1 0 /spelare/1/downlink
+1737590388: Sending SUBACK to 1
+1737590388: Received SUBSCRIBE from 1
+1737590388: 	/myndigheten (QoS 0)
+1737590388: 1 0 /myndigheten
+1737590388: Sending SUBACK to 1
+1737590419: mosquitto version 2.0.20 terminating
+1737590419: Saving in-memory database to mosquitto.db.
+1737590419: Error saving in-memory database, unable to open mosquitto.db.new for writing.
+1737590419: Error: Permission denied.
+1737590420: mosquitto version 2.0.20 starting
+1737590420: Config loaded from /mosquitto/config/mosquitto.conf.
+1737590420: Warning: ACL pattern '/torget' does not contain '%c' or '%u'.
+1737590420: Warning: ACL pattern '/myndigheten' does not contain '%c' or '%u'.
+1737590420: Opening ipv4 listen socket on port 8884.
+1737590420: Opening ipv6 listen socket on port 8884.
+1737590420: Opening ipv4 listen socket on port 8883.
+1737590420: Opening ipv6 listen socket on port 8883.
+1737590420: mosquitto version 2.0.20 running
+1737590421: New connection from 172.18.0.1:40434 on port 8884.
+1737590421: OpenSSL Error[0]: error:0A000126:SSL routines::unexpected eof while reading
+1737590421: Client <unknown> disconnected: Protocol error.
+1737590423: New connection from 172.18.0.1:50982 on port 8884.
+1737590423: OpenSSL Error[0]: error:0A000126:SSL routines::unexpected eof while reading
+1737590423: Client <unknown> disconnected: Protocol error.
+1737590438: New connection from 172.18.0.1:46154 on port 8884.
+1737590439: New client connected from 172.18.0.1:46154 as 1 (p2, c1, k120, u'1').
+1737590439: No will message specified.
+1737590439: Sending CONNACK to 1 (0, 0)
+1737590439: Received SUBSCRIBE from 1
+1737590439: 	/torget (QoS 0)
+1737590439: 1 0 /torget
+1737590439: Sending SUBACK to 1
+1737590439: Received SUBSCRIBE from 1
+1737590439: 	/spelare/1/downlink (QoS 0)
+1737590439: 1 0 /spelare/1/downlink
+1737590439: Sending SUBACK to 1
+1737590439: Received SUBSCRIBE from 1
+1737590439: 	/myndigheten (QoS 0)
+1737590439: 1 0 /myndigheten
+1737590439: Sending SUBACK to 1
+1737590454: Received PUBLISH from 1 (d0, q0, r0, m0, '/torget', ... (45 bytes))
+1737590454: Sending PUBLISH to 1 (d0, q0, r0, m0, '/torget', ... (45 bytes))
+1737590499: Received PINGREQ from 1
+1737590499: Sending PINGRESP to 1
+1737590525: mosquitto version 2.0.20 terminating
+1737590525: Saving in-memory database to mosquitto.db.
+1737590525: Error saving in-memory database, unable to open mosquitto.db.new for writing.
+1737590525: Error: Permission denied.
+1737590527: mosquitto version 2.0.20 starting
+1737590527: Config loaded from /mosquitto/config/mosquitto.conf.
+1737590527: Warning: ACL pattern '/torget' does not contain '%c' or '%u'.
+1737590527: Warning: ACL pattern '/myndigheten' does not contain '%c' or '%u'.
+1737590527: Opening ipv4 listen socket on port 8884.
+1737590527: Opening ipv6 listen socket on port 8884.
+1737590527: Opening ipv4 listen socket on port 8883.
+1737590527: Opening ipv6 listen socket on port 8883.
+1737590527: mosquitto version 2.0.20 running
+1737590543: New connection from 172.18.0.1:53388 on port 8884.
+1737590544: New client connected from 172.18.0.1:53388 as 1 (p2, c1, k120, u'1').
+1737590544: No will message specified.
+1737590544: Sending CONNACK to 1 (0, 0)
+1737590545: Received SUBSCRIBE from 1
+1737590545: 	/torget (QoS 0)
+1737590545: 1 0 /torget
+1737590545: Sending SUBACK to 1
+1737590545: Received SUBSCRIBE from 1
+1737590545: 	/spelare/1/downlink (QoS 0)
+1737590545: 1 0 /spelare/1/downlink
+1737590545: Sending SUBACK to 1
+1737590545: Received SUBSCRIBE from 1
+1737590545: 	/myndigheten (QoS 0)
+1737590545: 1 0 /myndigheten
+1737590545: Sending SUBACK to 1
+1737590555: New connection from 172.18.0.1:54930 on port 8884.
+1737590556: Client 1 already connected, closing old connection.
+1737590556: New client connected from 172.18.0.1:54930 as 1 (p2, c1, k120, u'1').
+1737590556: No will message specified.
+1737590556: Sending CONNACK to 1 (0, 0)
+1737590556: Received SUBSCRIBE from 1
+1737590556: 	/torget (QoS 0)
+1737590556: 1 0 /torget
+1737590556: Sending SUBACK to 1
+1737590556: Received SUBSCRIBE from 1
+1737590556: 	/spelare/1/downlink (QoS 0)
+1737590556: 1 0 /spelare/1/downlink
+1737590556: Sending SUBACK to 1
+1737590556: Received SUBSCRIBE from 1
+1737590556: 	/myndigheten (QoS 0)
+1737590556: 1 0 /myndigheten
+1737590556: Sending SUBACK to 1
+1737590564: Received PUBLISH from 1 (d0, q0, r0, m0, '/torget', ... (43 bytes))
+1737590564: Sending PUBLISH to 1 (d0, q0, r0, m0, '/torget', ... (43 bytes))
+1737590616: Received PINGREQ from 1
+1737590616: Sending PINGRESP to 1
+1737590677: Received PINGREQ from 1
+1737590677: Sending PINGRESP to 1
+1737590738: Received PINGREQ from 1
+1737590738: Sending PINGRESP to 1
+1737590746: mosquitto version 2.0.20 terminating
+1737590746: Saving in-memory database to mosquitto.db.
+1737590746: Error saving in-memory database, unable to open mosquitto.db.new for writing.
+1737590746: Error: Permission denied.
+1737590806: mosquitto version 2.0.20 starting
+1737590806: Config loaded from /mosquitto/config/mosquitto.conf.
+1737590806: Warning: ACL pattern '/torget' does not contain '%c' or '%u'.
+1737590806: Warning: ACL pattern '/myndigheten' does not contain '%c' or '%u'.
+1737590806: Opening ipv4 listen socket on port 8884.
+1737590806: Opening ipv6 listen socket on port 8884.
+1737590806: Opening ipv4 listen socket on port 8883.
+1737590806: Opening ipv6 listen socket on port 8883.
+1737590806: mosquitto version 2.0.20 running
+1737590821: New connection from 172.18.0.1:42432 on port 8884.
+1737590822: mosquitto version 2.0.20 terminating
+1737590822: Saving in-memory database to mosquitto.db.
+1737590822: Error saving in-memory database, unable to open mosquitto.db.new for writing.
+1737590822: Error: Permission denied.
+1737590823: mosquitto version 2.0.20 starting
+1737590823: Config loaded from /mosquitto/config/mosquitto.conf.
+1737590823: Warning: ACL pattern '/torget' does not contain '%c' or '%u'.
+1737590823: Warning: ACL pattern '/myndigheten' does not contain '%c' or '%u'.
+1737590823: Opening ipv4 listen socket on port 8884.
+1737590823: Opening ipv6 listen socket on port 8884.
+1737590823: Opening ipv4 listen socket on port 8883.
+1737590823: Opening ipv6 listen socket on port 8883.
+1737590823: mosquitto version 2.0.20 running
+1737590825: New connection from 172.18.0.1:42090 on port 8884.
+1737590826: New client connected from 172.18.0.1:42090 as 1 (p2, c1, k120, u'1').
+1737590826: No will message specified.
+1737590826: Sending CONNACK to 1 (0, 0)
+1737590826: Received SUBSCRIBE from 1
+1737590826: 	/torget (QoS 0)
+1737590826: 1 0 /torget
+1737590826: Sending SUBACK to 1
+1737590826: Received SUBSCRIBE from 1
+1737590826: 	/spelare/1/downlink (QoS 0)
+1737590826: 1 0 /spelare/1/downlink
+1737590826: Sending SUBACK to 1
+1737590831: OpenSSL Error[0]: error:0A000126:SSL routines::unexpected eof while reading
+1737590831: Client 1 closed its connection.
+1737590955: New connection from 172.18.0.1:55380 on port 8884.
+1737590956: New client connected from 172.18.0.1:55380 as 1 (p2, c1, k120, u'1').
+1737590956: No will message specified.
+1737590956: Sending CONNACK to 1 (0, 0)
+1737590956: Received SUBSCRIBE from 1
+1737590956: 	/torget (QoS 0)
+1737590956: 1 0 /torget
+1737590956: Sending SUBACK to 1
+1737590956: Received SUBSCRIBE from 1
+1737590956: 	/spelare/1/downlink (QoS 0)
+1737590956: 1 0 /spelare/1/downlink
+1737590956: Sending SUBACK to 1
+1737590956: Received SUBSCRIBE from 1
+1737590956: 	/myndigheten (QoS 0)
+1737590956: 1 0 /myndigheten
+1737590956: Sending SUBACK to 1
+1737591017: Received PINGREQ from 1
+1737591017: Sending PINGRESP to 1
+1737591077: Received PINGREQ from 1
+1737591077: Sending PINGRESP to 1
+1737591138: Received PINGREQ from 1
+1737591138: Sending PINGRESP to 1
+1737591198: Received PINGREQ from 1
+1737591198: Sending PINGRESP to 1
+1737591259: Received PINGREQ from 1
+1737591259: Sending PINGRESP to 1
+1737591320: Received PINGREQ from 1
+1737591320: Sending PINGRESP to 1
+1737591380: Received PINGREQ from 1
+1737591380: Sending PINGRESP to 1
+1737591441: Received PINGREQ from 1
+1737591441: Sending PINGRESP to 1
+1737591502: Received PINGREQ from 1
+1737591502: Sending PINGRESP to 1
+1737591562: Received PINGREQ from 1
+1737591562: Sending PINGRESP to 1
+1737591623: Received PINGREQ from 1
+1737591623: Sending PINGRESP to 1
+1737591683: Received PINGREQ from 1
+1737591683: Sending PINGRESP to 1
+1737591744: Received PINGREQ from 1
+1737591744: Sending PINGRESP to 1
+1737591774: mosquitto version 2.0.20 terminating
+1737591774: Saving in-memory database to mosquitto.db.
+1737591774: Error saving in-memory database, unable to open mosquitto.db.new for writing.
+1737591774: Error: Permission denied.
+1737591791: mosquitto version 2.0.20 starting
+1737591791: Config loaded from /mosquitto/config/mosquitto.conf.
+1737591791: Warning: ACL pattern '/torget' does not contain '%c' or '%u'.
+1737591791: Warning: ACL pattern '/myndigheten' does not contain '%c' or '%u'.
+1737591791: Opening ipv4 listen socket on port 8884.
+1737591791: Opening ipv6 listen socket on port 8884.
+1737591791: Opening ipv4 listen socket on port 8883.
+1737591791: Opening ipv6 listen socket on port 8883.
+1737591791: mosquitto version 2.0.20 running
+1737591796: New connection from 172.18.0.1:52462 on port 8884.
+1737591797: New client connected from 172.18.0.1:52462 as 1 (p2, c1, k120, u'1').
+1737591797: No will message specified.
+1737591797: Sending CONNACK to 1 (0, 0)
+1737591797: Received SUBSCRIBE from 1
+1737591797: 	/torget (QoS 0)
+1737591797: 1 0 /torget
+1737591797: Sending SUBACK to 1
+1737591797: Received SUBSCRIBE from 1
+1737591797: 	/spelare/1/downlink (QoS 0)
+1737591797: 1 0 /spelare/1/downlink
+1737591797: Sending SUBACK to 1
+1737591797: Received SUBSCRIBE from 1
+1737591797: 	/myndigheten (QoS 0)
+1737591797: 1 0 /myndigheten
+1737591797: Sending SUBACK to 1
+1737591815: Received PUBLISH from 1 (d0, q0, r0, m0, '/torget', ... (36 bytes))
+1737591815: Sending PUBLISH to 1 (d0, q0, r0, m0, '/torget', ... (36 bytes))
+1737591858: Received PINGREQ from 1
+1737591858: Sending PINGRESP to 1
+1737591918: Received PINGREQ from 1
+1737591918: Sending PINGRESP to 1
+1737591979: Received PINGREQ from 1
+1737591979: Sending PINGRESP to 1
+1737592040: Received PINGREQ from 1
+1737592040: Sending PINGRESP to 1
+1737592100: Received PINGREQ from 1
+1737592100: Sending PINGRESP to 1
+1737592131: OpenSSL Error[0]: error:0A000126:SSL routines::unexpected eof while reading
+1737592131: Client 1 closed its connection.
+1737592131: New connection from 172.18.0.1:40442 on port 8884.
+1737592132: New client connected from 172.18.0.1:40442 as 1 (p2, c1, k120, u'1').
+1737592132: No will message specified.
+1737592132: Sending CONNACK to 1 (0, 0)
+1737592132: Received SUBSCRIBE from 1
+1737592132: 	/torget (QoS 0)
+1737592132: 1 0 /torget
+1737592132: Sending SUBACK to 1
+1737592132: Received SUBSCRIBE from 1
+1737592132: 	/spelare/1/downlink (QoS 0)
+1737592132: 1 0 /spelare/1/downlink
+1737592132: Sending SUBACK to 1
+1737592132: Received SUBSCRIBE from 1
+1737592132: 	/myndigheten (QoS 0)
+1737592132: 1 0 /myndigheten
+1737592132: Sending SUBACK to 1
+1737592193: Received PINGREQ from 1
+1737592193: Sending PINGRESP to 1
+1737592256: Received PINGREQ from 1
+1737592256: Sending PINGRESP to 1
+1737592316: OpenSSL Error[0]: error:0A000126:SSL routines::unexpected eof while reading
+1737592316: Client 1 closed its connection.
+1737592324: New connection from 172.18.0.1:43938 on port 8884.
+1737592326: New client connected from 172.18.0.1:43938 as 1 (p2, c1, k120, u'1').
+1737592326: No will message specified.
+1737592326: Sending CONNACK to 1 (0, 0)
+1737592326: Received SUBSCRIBE from 1
+1737592326: 	/torget (QoS 0)
+1737592326: 1 0 /torget
+1737592326: Sending SUBACK to 1
+1737592326: Received SUBSCRIBE from 1
+1737592326: 	/spelare/1/downlink (QoS 0)
+1737592326: 1 0 /spelare/1/downlink
+1737592326: Sending SUBACK to 1
+1737592326: Received SUBSCRIBE from 1
+1737592326: 	/myndigheten (QoS 0)
+1737592326: 1 0 /myndigheten
+1737592326: Sending SUBACK to 1
+1737592335: mosquitto version 2.0.20 terminating
+1737592335: Saving in-memory database to mosquitto.db.
+1737592335: Error saving in-memory database, unable to open mosquitto.db.new for writing.
+1737592335: Error: Permission denied.
+1737592340: mosquitto version 2.0.20 starting
+1737592340: Config loaded from /mosquitto/config/mosquitto.conf.
+1737592340: Warning: ACL pattern '/torget' does not contain '%c' or '%u'.
+1737592340: Warning: ACL pattern '/myndigheten' does not contain '%c' or '%u'.
+1737592340: Opening ipv4 listen socket on port 8884.
+1737592340: Opening ipv6 listen socket on port 8884.
+1737592340: Opening ipv4 listen socket on port 8883.
+1737592340: Opening ipv6 listen socket on port 8883.
+1737592340: mosquitto version 2.0.20 running
+1737592341: New connection from 172.18.0.1:33008 on port 8884.
+1737592341: OpenSSL Error[0]: error:0A000126:SSL routines::unexpected eof while reading
+1737592341: Client <unknown> disconnected: Protocol error.
+1737592343: New connection from 172.18.0.1:33012 on port 8884.
+1737592343: OpenSSL Error[0]: error:0A000126:SSL routines::unexpected eof while reading
+1737592343: Client <unknown> disconnected: Protocol error.
+1737592345: New connection from 172.18.0.1:40390 on port 8884.
+1737592345: OpenSSL Error[0]: error:0A000126:SSL routines::unexpected eof while reading
+1737592345: Client <unknown> disconnected: Protocol error.
+1737592347: New connection from 172.18.0.1:40406 on port 8884.
+1737592347: OpenSSL Error[0]: error:0A000126:SSL routines::unexpected eof while reading
+1737592347: Client <unknown> disconnected: Protocol error.
+1737592358: New connection from 172.18.0.1:51782 on port 8884.
+1737592359: New client connected from 172.18.0.1:51782 as 1 (p2, c1, k120, u'1').
+1737592359: No will message specified.
+1737592359: Sending CONNACK to 1 (0, 0)
+1737592359: Received SUBSCRIBE from 1
+1737592359: 	/torget (QoS 0)
+1737592359: 1 0 /torget
+1737592359: Sending SUBACK to 1
+1737592359: Received SUBSCRIBE from 1
+1737592359: 	/spelare/1/downlink (QoS 0)
+1737592359: 1 0 /spelare/1/downlink
+1737592359: Sending SUBACK to 1
+1737592359: Received SUBSCRIBE from 1
+1737592359: 	/myndigheten (QoS 0)
+1737592359: 1 0 /myndigheten
+1737592359: Sending SUBACK to 1
+1737592402: Received PUBLISH from 1 (d0, q0, r0, m0, '/spelare/1/uplink', ... (15 bytes))
+1737592420: Received PINGREQ from 1
+1737592420: Sending PINGRESP to 1
+1737592481: Received PINGREQ from 1
+1737592481: Sending PINGRESP to 1
+1737592541: Received PINGREQ from 1
+1737592541: Sending PINGRESP to 1
+1737592602: Received PINGREQ from 1
+1737592602: Sending PINGRESP to 1
+1737592647: OpenSSL Error[0]: error:0A000126:SSL routines::unexpected eof while reading
+1737592647: Client 1 closed its connection.
+1737592651: New connection from 172.18.0.1:46966 on port 8884.
+1737592653: New client connected from 172.18.0.1:46966 as 1 (p2, c1, k120, u'1').
+1737592653: No will message specified.
+1737592653: Sending CONNACK to 1 (0, 0)
+1737592653: Received SUBSCRIBE from 1
+1737592653: 	/torget (QoS 0)
+1737592653: 1 0 /torget
+1737592653: Sending SUBACK to 1
+1737592653: Received SUBSCRIBE from 1
+1737592653: 	/spelare/1/downlink (QoS 0)
+1737592653: 1 0 /spelare/1/downlink
+1737592653: Sending SUBACK to 1
+1737592653: Received SUBSCRIBE from 1
+1737592653: 	/myndigheten (QoS 0)
+1737592653: 1 0 /myndigheten
+1737592653: Sending SUBACK to 1
+1737592698: Received PUBLISH from 1 (d0, q0, r0, m0, '/torget', ... (36 bytes))
+1737592698: Sending PUBLISH to 1 (d0, q0, r0, m0, '/torget', ... (36 bytes))
+1737592713: Received PINGREQ from 1
+1737592713: Sending PINGRESP to 1
+1737592737: Received PUBLISH from 1 (d0, q0, r0, m0, '/spelare/1/uplink', ... (19 bytes))
+1737592744: Received PUBLISH from 1 (d0, q0, r0, m0, '/spelare/1/uplink', ... (26 bytes))
+1737592774: Received PINGREQ from 1
+1737592774: Sending PINGRESP to 1
+1737592819: OpenSSL Error[0]: error:0A000126:SSL routines::unexpected eof while reading
+1737592819: Client 1 closed its connection.
+1737592874: mosquitto version 2.0.20 terminating
+1737592874: Saving in-memory database to mosquitto.db.
+1737592874: Error saving in-memory database, unable to open mosquitto.db.new for writing.
+1737592874: Error: Permission denied.

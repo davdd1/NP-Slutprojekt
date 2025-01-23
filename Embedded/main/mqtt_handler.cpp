@@ -31,9 +31,7 @@ MQTTHandler::~MQTTHandler()
 
 static void mqtt_event_handler(void *arg, esp_event_base_t event_base, int32_t event_id, void *event_data)
 {
-    PRINTF_MQTT("MQTT event handler called");
-
-    esp_mqtt_event_handle_t *event = (esp_mqtt_event_handle_t *)event_data;
+    esp_mqtt_event_handle_t event = (esp_mqtt_event_handle_t)event_data;
 
     if (arg == NULL)
     {
@@ -47,11 +45,11 @@ static void mqtt_event_handler(void *arg, esp_event_base_t event_base, int32_t e
         return;
     }
 
-    switch (event_id)
+    switch ((esp_mqtt_event_id_t)event_id)
     {
     case MQTT_EVENT_CONNECTED:
         PRINTF_MQTT("Connected to MQTT broker");
-        PRINTF_MQTT("Broker: mqtts://%s:%s", CONFIG_MQTT_BROKER_URI, CONFIG_MQTT_BROKER_PORT);
+        PRINTF_MQTT("Broker: mqtts://%s:%d", CONFIG_MQTT_BROKER_URI, CONFIG_MQTT_BROKER_PORT);
         xEventGroupSetBits(params->mqttEventGroup, MQTT_CONNECTED_BIT);
         break;
     case MQTT_EVENT_DISCONNECTED:
@@ -65,18 +63,41 @@ static void mqtt_event_handler(void *arg, esp_event_base_t event_base, int32_t e
         }
         break;
     case MQTT_EVENT_SUBSCRIBED:
-        PRINTF_MQTT("MQTT subscribe");
+        PRINTF_MQTT("Subscribe successful");
         break;
     case MQTT_EVENT_DATA:
-        PRINTF_MQTT("MQTT data");
-        MQTTHandler *mqttHandler = (MQTTHandler *)params;
-        mqttHandler->handleMessage(**event);
+
+        char topic[100];
+        char data[500];
+
+        // Copy topic and null-terminate
+        strncpy(topic, event->topic, event->topic_len);
+        topic[event->topic_len] = '\0';
+
+        strncpy(data, event->data, event->data_len);
+        data[event->data_len] = '\0';
+
+        // TODO: Handle messages differently from different topics, ex: from /myndigheten // OR Maybe in UARTHandler
+
+        if (event->topic_len > 0 && event->data_len > 0)
+        {
+            PRINTF_MQTT("Received data from topic '%s': %s", topic, data);
+        }
+        else 
+        {
+            PRINTF_MQTT("Error in received data and/or topic");
+        }
+        break;
+    default:
+        PRINTF_MQTT("MQTT event: %lud", event_id);
         break;
     }
 }
 
 void MQTTHandler::init()
 {
+
+
 
     PRINTF_MQTT("Initializing MQTT");
     nvsHandler nvs("eol", "certs");
@@ -141,6 +162,8 @@ void MQTTHandler::init()
 
     ESP_ERROR_CHECK(esp_mqtt_client_register_event(this->params->mqttClient, MQTT_EVENT_ANY, mqtt_event_handler, this->params));
     ESP_ERROR_CHECK(esp_mqtt_client_start(this->params->mqttClient));
+
+    xEventGroupWaitBits(this->params->mqttEventGroup, MQTT_CONNECTED_BIT, pdFALSE, pdTRUE, portMAX_DELAY);
 
     subscribe("/torget");
     subscribe("/spelare/" + std::string(playerID) + "/downlink");

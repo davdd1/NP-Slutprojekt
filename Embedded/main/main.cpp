@@ -14,6 +14,7 @@ EventGroupHandle_t eventGroup;
 
 extern "C" void app_main(void)
 {
+
     wifi.init();
     uart.init(&mqtt);
 
@@ -28,5 +29,5 @@ extern "C" void app_main(void)
 
     xEventGroupWaitBits(mqtt.getEventGroup(), MQTT_CONNECTED_BIT, pdFALSE, pdTRUE, portMAX_DELAY);
 
-    xTaskCreate(uartTask, "UART Task", 2048, (void *)&uart, 5, NULL);
+    xTaskCreate(uartTask, "UART Task", 6000, (void *)&uart, 5, NULL);
 }

@@ -16,12 +16,16 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-
 const (
 	caCertFile     = "cert/rootCA.crt" // Path to CA cert
 	caKeyFile      = "cert/rootCA.key" // Path to CA key (if needed, though usually just CA cert is needed)
 	serverCertFile = "cert/server.crt" // Path to server cert
 	serverKeyFile  = "cert/server.key" // Path to server key
+)
+
+var (
+	nextPlayerID = 1 // Next player ID to give out
+	ipToPlayerID = make(map[string]string)
 )
 
 func init() {
@@ -42,9 +46,9 @@ func init() {
 	certPool.AppendCertsFromPEM(caCert)
 
 	tlsConfig := &tls.Config{
-		ClientCAs:          certPool,                      
-		ClientAuth:         tls.VerifyClientCertIfGiven,   
-		Certificates:       []tls.Certificate{serverCert}, 
+		ClientCAs:          certPool,
+		ClientAuth:         tls.VerifyClientCertIfGiven,
+		Certificates:       []tls.Certificate{serverCert},
 		InsecureSkipVerify: true,
 	}
 
@@ -54,9 +58,9 @@ func init() {
 	router.POST("/spelare", playerIDHandler)
 
 	server := &http.Server{
-		Addr:      ":9191",   
-		TLSConfig: tlsConfig, 
-		Handler:   router,    
+		Addr:      ":9191",
+		TLSConfig: tlsConfig,
+		Handler:   router,
 	}
 
 	// Start the HTTPS server
@@ -220,6 +224,7 @@ func HandleSignCSR(c *gin.Context) {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to parse signed certificate"})
 		return
 	}
+
 	log.Printf("Signed certificate subject: %s\n", parsedCert.Subject.String())
 	log.Printf("Signed certificate common name: %s\n", parsedCert.Subject.CommonName)
 
@@ -228,20 +233,31 @@ func HandleSignCSR(c *gin.Context) {
 }
 
 // Give a player ID to a new player, same id for same player
-func givePlayerID() string {
-	return strconv.FormatInt(time.Now().Unix(), 10)
+func generatePlayerID() string {
+	playerID := strconv.Itoa(nextPlayerID)
+	nextPlayerID++
+	return playerID
 }
 
 // Handler for creating a new player ID, need to remember this ID for the player, cant gen
 func playerIDHandler(c *gin.Context) {
-	playerID := givePlayerID()
+	clientIP := c.ClientIP()
+
+	if playerID, exists := ipToPlayerID[clientIP]; exists {
+		log.Printf("Player ID already assigned, returning existing ID %v for IP: %v", playerID, clientIP)
+		c.JSON(http.StatusOK, gin.H{"id": playerID})
+		return
+	}
+
+	playerID := generatePlayerID()
+
+	ipToPlayerID[clientIP] = playerID
 
 	response := gin.H{"id": playerID}
 
-	log.Printf("Response sent: %v", response)
+	log.Printf("New player ID assigned: %v to IP: %v", playerID, clientIP)
 
 	c.Header("Content-Type", "application/json; charset=utf-8")
-
 	c.JSON(http.StatusOK, response)
 }
 

@@ -1,6 +1,7 @@
 #pragma once
 
 #include <string>
+#include "mqtt_handler.h"
 
 class UARTHandler
 {
@@ -14,6 +15,7 @@ public:
 
 private:
     MQTTHandler *mqttHandler;
+    char* playerID = nullptr;
 };
 
 void uartTask(void *pvParameters);
